@@ -1,5 +1,5 @@
 import {Page} from 'ionic-angular';
-import {SearchBus} from '../search-bus/search-bus';
+import {StopPage} from '../stop/stop';
 import {LinesPage} from '../lines/lines';
 
 
@@ -9,6 +9,6 @@ import {LinesPage} from '../lines/lines';
 export class TabsPage {
   // this tells the tabs component which Pages
   // should be each tab's root Page
-  tab1Root: any = SearchBus;
+  tab1Root: any = StopPage;
   tab2Root: any = LinesPage;
 }
