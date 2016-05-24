@@ -1,0 +1,11 @@
+<ion-card *ngFor="let bus of buses">
+  <button (click)="goToBusDetail(bus)" ion-item>
+    <ion-icon item-left name="bus" primary>
+      <br><span>{{bus.name}}</span></ion-icon>
+    <h2>{{bus.via}}</h2>
+    <p>
+      <ion-icon name="clock" item-left></ion-icon>6:10AM - Saindo de {{data.origem}} em <span favorite clear>3 min</span></p>
+    <p>
+      <ion-icon name="walk" item-left></ion-icon>7:05AM - {{data.destino}} em <span favorite>55 min</span></p>
+  </button>
+</ion-card>
