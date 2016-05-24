@@ -1,8 +1,11 @@
-
 <ion-navbar *navbar>
-  <ion-title> Onibus </ion-title>
+  <ion-title>{{data.origem}}
+    <ion-icon name="md-arrow-dropright"></ion-icon> {{data.destino}} </ion-title>
 </ion-navbar>
 
 <ion-content class="bus-result">
-    <h1>Onibus</h1>
-</ion-content>
+  <ion-content>
+
+    <card-bus [data]="data" [buses]="buses"></card-bus>
+
+  </ion-content>
