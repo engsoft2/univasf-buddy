@@ -1,5 +1,5 @@
 import {Page, NavController} from 'ionic-angular';
-import {CardBus} from '../../components/card-bus/card-bus';
+import {RouteCard} from '../../components/route-card/route-card';
 
 /*
   Generated class for the LinesPage page.
@@ -9,12 +9,12 @@ import {CardBus} from '../../components/card-bus/card-bus';
 */
 @Page({
   templateUrl: 'build/pages/lines/lines.html',
-  directives: [CardBus]
+  directives: [RouteCard]
 })
 export class LinesPage {
-  buses;
+  routes;
   constructor(public nav: NavController) {
-    this.buses = [{
+    this.routes= [{
       name : "A", via: "Via Batalhão PM/Av. Nações",
       stops: [
         { hour: "6:10", loc: "UNIVASF Campus Juazeiro/BA" },
