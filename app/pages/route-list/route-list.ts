@@ -8,10 +8,10 @@ import {RouteCard} from '../../components/route-card/route-card';
   Ionic pages and navigation.
 */
 @Page({
-  templateUrl: 'build/pages/lines/lines.html',
+  templateUrl: 'build/pages/route-list/route-list.html',
   directives: [RouteCard]
 })
-export class LinesPage {
+export class RouteListPage {
   routes;
   constructor(public nav: NavController) {
     this.routes= [{

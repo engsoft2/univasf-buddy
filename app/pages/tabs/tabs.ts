@@ -1,6 +1,6 @@
 import {Page} from 'ionic-angular';
 import {StopPage} from '../stop/stop';
-import {LinesPage} from '../lines/lines';
+import {RouteListPage} from '../route-list/route-list';
 
 
 @Page({
@@ -10,5 +10,5 @@ export class TabsPage {
   // this tells the tabs component which Pages
   // should be each tab's root Page
   tab1Root: any = StopPage;
-  tab2Root: any = LinesPage;
+  tab2Root: any = RouteListPage;
 }
