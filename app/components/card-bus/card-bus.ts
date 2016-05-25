@@ -8,7 +8,7 @@ import {BusDetails} from '../../pages/bus-details/bus-details';
 })
 
 export class CardBus {
-  @Input() data : any[];
+  // @Input() data : any[];
   @Input() buses: any[];
   constructor(public nav: NavController) { }
 
