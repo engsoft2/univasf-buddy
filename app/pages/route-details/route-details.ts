@@ -2,10 +2,10 @@ import {App, Platform} from 'ionic-angular';
 import {Page, NavParams} from 'ionic-angular';
 
 @Page({
-  templateUrl: 'build/pages/bus-details/bus-details.html',
+  templateUrl: 'build/pages/route-details/route-details.html',
 })
 
-export class BusDetails {
+export class RouteDetailsPage {
   bus: any;
   map: any;
   ctaLayer: any;
