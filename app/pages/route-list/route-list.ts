@@ -12,8 +12,14 @@ import {RouteCard} from '../../components/route-card/route-card';
   directives: [RouteCard]
 })
 export class RouteListPage {
+  searchQuery: string = '';
   routes;
+
   constructor(public nav: NavController) {
+    this.initializeItems();
+  }
+
+  initializeItems() {
     this.routes= [{
       name : "A", via: "Via Batalhão PM/Av. Nações",
       stops: [
@@ -33,5 +39,26 @@ export class RouteListPage {
     }, {
       name: "B", via: "Via Av. Honorato Viana"
     }];
+  }
+
+  search(searchbar) {
+    // Reset items back to all of the items
+    this.initializeItems();
+
+    // set q to the value of the searchbar
+    var q = searchbar.value;
+
+    // if the value is an empty string don't filter the items
+    if (q.trim() == '') {
+      return;
+    }
+
+    this.routes = this.routes.filter((v) => {
+      if (v.name.toLowerCase().indexOf(q.toLowerCase()) > -1 ||
+          v.via.toLowerCase().indexOf(q.toLowerCase()) > -1){
+        return true;
+      }
+      return false;
+    })
   }
 }
