@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {NavController} from 'ionic-angular';
-import {BusDetails} from '../../pages/bus-details/bus-details';
+import {RouteDetailsPage} from '../../pages/route-details/route-details';
 
 @Component({
   selector: 'route-card',
@@ -8,12 +8,12 @@ import {BusDetails} from '../../pages/bus-details/bus-details';
 })
 
 export class RouteCard {
-  
+
   @Input() routes: any[];
 
   constructor(public nav: NavController) { }
 
   goToBusDetail(bus) {
-    this.nav.push(BusDetails, bus);
+    this.nav.push(RouteDetailsPage, bus);
   }
 }
