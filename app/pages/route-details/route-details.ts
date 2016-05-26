@@ -1,16 +1,20 @@
 import {App, Platform} from 'ionic-angular';
 import {Page, NavParams} from 'ionic-angular';
+import {ToDatePipe} from '../../pipes/toDate';
+import {DateFormatPipe} from 'angular2-moment';
+
 
 @Page({
   templateUrl: 'build/pages/route-details/route-details.html',
+  pipes: [ToDatePipe, DateFormatPipe]
 })
 
 export class RouteDetailsPage {
-  bus: any;
+  route: any;
   map: any;
   ctaLayer: any;
   constructor(platform: Platform, params: NavParams) {
-    this.bus = params.data;
+    this.route = params.data;
     platform.ready().then(() => {
       this.initMap();
     });
