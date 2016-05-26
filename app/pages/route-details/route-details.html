@@ -1,29 +1,22 @@
 <ion-navbar *navbar>
-  <ion-title><ion-icon name="bus"></ion-icon> Busão {{route.onibus}}</ion-title>
+  <ion-title>
+    <ion-icon name="bus"></ion-icon> Busão {{route.onibus}}</ion-title>
 </ion-navbar>
 
 <ion-content class="route-details">
-  <!-- <ion-card> -->
   <div id="list">
-
     <ion-item>
       <ion-icon item-left name="clock" primary></ion-icon>
       <h2>{{route.via}}</h2>
-      <!-- <p>
-        <ion-icon name="clock" item-left></ion-icon>6:10AM - Saindo de {{data.origem}} em <span favorite clear>3 min</span></p>
-      <p>
-        <ion-icon name="walk" item-left></ion-icon>7:05AM - {{data.destino}} em <span favorite>55 min</span></p> -->
     </ion-item>
     <ion-list>
       <button (click)="zoom(stop)" ion-item *ngFor="let r of route.paradas">
         <span primary item-left>{{r.horario | todate | amDateFormat:'LT'}}</span>{{r.nome_parada}}
       </button>
     </ion-list>
-    <!-- </ion-card> -->
-
   </div>
 </ion-content>
+
 <ion-content class="route-details">
   <div id="map"></div>
-
 </ion-content>
