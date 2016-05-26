@@ -7,13 +7,13 @@
   <ion-list>
     <ion-item>
       <ion-icon small name="clock" item-left></ion-icon>
-      <span primary item-left>{{route.ponto_inicial.horario | todate | date:'shortTime'}}</span>
+      <span primary item-left>{{route.ponto_inicial.horario | todate | amDateFormat:'LT'}}</span>
       Saindo {{route.ponto_inicial.nome | stopname}} <span favorite class="item-bold">{{route.ponto_inicial.horario | todate | amTimeAgo}}</span>
     </ion-item>
 
     <ion-item>
       <ion-icon small name="walk" item-left></ion-icon>
-      <span primary item-left>{{route.ponto_final.horario | todate | date:'shortTime'}}</span>
+      <span primary item-left>{{route.ponto_final.horario | todate | amDateFormat:'LT'}}</span>
       Chegando {{route.ponto_final.nome | stopname}} <span favorite class="item-bold">{{route.ponto_final.horario | todate | amTimeAgo}}</span>
     </ion-item>
   </ion-list>
