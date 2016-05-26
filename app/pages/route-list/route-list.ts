@@ -1,5 +1,6 @@
 import {Page, NavController} from 'ionic-angular';
 import {RouteCard} from '../../components/route-card/route-card';
+import {RouteService} from '../../providers/route-service/route-service';
 
 /*
   Generated class for the LinesPage page.
@@ -9,14 +10,28 @@ import {RouteCard} from '../../components/route-card/route-card';
 */
 @Page({
   templateUrl: 'build/pages/route-list/route-list.html',
-  directives: [RouteCard]
+  directives: [RouteCard],
 })
 export class RouteListPage {
   searchQuery: string = '';
   routes;
 
-  constructor(public nav: NavController) {
-    this.initializeItems();
+  constructor(public nav: NavController, public routeData : RouteService) {
+    // this.initializeItems();
+  }
+
+  ngOnInit() {
+    console.log('ngOnInit');
+    this.routeData.getAllLines().then(
+      data => {
+        this.routes = data;
+        console.log(data);
+      }
+    )
+  }
+
+  route(name) {
+    return name;
   }
 
   initializeItems() {
@@ -43,7 +58,8 @@ export class RouteListPage {
 
   search(searchbar) {
     // Reset items back to all of the items
-    this.initializeItems();
+    // this.initializeItems();
+    this.ngOnInit();
 
     // set q to the value of the searchbar
     var q = searchbar.value;
@@ -54,7 +70,7 @@ export class RouteListPage {
     }
 
     this.routes = this.routes.filter((v) => {
-      if (v.name.toLowerCase().indexOf(q.toLowerCase()) > -1 ||
+      if (v.onibus.toLowerCase().indexOf(q.toLowerCase()) > -1 ||
           v.via.toLowerCase().indexOf(q.toLowerCase()) > -1){
         return true;
       }
