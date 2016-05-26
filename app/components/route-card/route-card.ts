@@ -5,9 +5,7 @@ import {StopNamePipe} from '../../pipes/stopName';
 import {ToDatePipe} from '../../pipes/toDate';
 import {TimeAgoPipe, DateFormatPipe} from 'angular2-moment';
 import * as moment from 'moment';
-// import * as moment from 'moment/moment';
 
-moment.lang('pt-br');
 @Component({
   selector: 'route-card',
   templateUrl: 'build/components/route-card/route-card.html',
