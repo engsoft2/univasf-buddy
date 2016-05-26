@@ -3,7 +3,7 @@ import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class BusService {
+export class RouteService {
   data: any = null;
 
   constructor(public http: Http) {}
