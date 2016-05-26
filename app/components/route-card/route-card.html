@@ -1,11 +1,20 @@
-<ion-card *ngFor="let route of routes">
-  <button (click)="goToBusDetail(route)" ion-item>
-    <ion-icon item-left name="bus" primary>
-      <br><span>{{route.name}}</span></ion-icon>
-    <h2>{{route.via}}</h2>
-    <p>
-      <ion-icon name="clock" item-left></ion-icon>6:10AM - Saindo de X em <span favorite clear>3 min</span></p>
-    <p>
-      <ion-icon name="walk" item-left></ion-icon>7:05AM - X em <span favorite>55 min</span></p>
-  </button>
+<ion-card *ngFor="let route of routes" >
+  <ion-item>
+    <h2><ion-icon small name="bus" primary></ion-icon><span primary item-left> Busão {{route.name}}</span> {{route.via}}</h2>
+  </ion-item>
+  <ion-list>
+    <ion-item><ion-icon small name="clock" item-left></ion-icon><span primary item-left> 6:10</span>Saindo de Jua em <span favorite class="item-bold">3 min</span> </ion-item>
+    <ion-item><ion-icon small name="walk" item-left></ion-icon><span primary item-left> 7:05</span>Chegando de Petro em <span favorite class="item-bold">55 min</span></ion-item>
+  </ion-list>
+  <ion-item>
+    <ion-icon small name="pin" item-left></ion-icon><span item-left>33 Paradas</span>
+    <!-- <button item-left>
+      <ion-icon name="pin"></ion-icon>
+      <div>33 Paradas</div>
+    </button> -->
+    <button primary clear item-right (click)="goToBusDetail(route)">
+      <ion-icon name="navigate"></ion-icon>
+      Detalhes
+    </button>
+  </ion-item>
 </ion-card>
