@@ -22,8 +22,8 @@ export class RouteCard {
 
    }
 
-  goToBusDetail(bus) {
-    this.nav.push(RouteDetailsPage, bus);
+  goToRouteDetail(route) {
+    this.nav.push(RouteDetailsPage, route);
   }
 }
 
