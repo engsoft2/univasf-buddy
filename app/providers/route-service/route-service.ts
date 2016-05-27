@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 export class RouteService {
   data: any = null;
 
-  constructor(public http: Http) {}
+  constructor(public http: Http) { }
 
   load() {
     if (this.data) {

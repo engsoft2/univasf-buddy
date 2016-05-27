@@ -3,7 +3,6 @@ import {Page, NavParams} from 'ionic-angular';
 import {ToDatePipe} from '../../pipes/toDate';
 import {TimeAgoPipe, DateFormatPipe} from 'angular2-moment';
 
-
 @Page({
   templateUrl: 'build/pages/route-details/route-details.html',
   pipes: [ToDatePipe, TimeAgoPipe, DateFormatPipe]
@@ -24,15 +23,15 @@ export class RouteDetailsPage {
     let mapEle = document.getElementById('map');
 
     this.map = new google.maps.Map(mapEle, {
-      center: {lat: -9.42044, lng: -40.50367},
+      center: { lat: -9.42044, lng: -40.50367 },
       zoom: 13
     });
 
     this.ctaLayer = new google.maps.KmlLayer({
-       url: 'https://firebasestorage.googleapis.com/v0/b/univasf-buddy.appspot.com/o/busA_1%20(1).kmz?alt=media&token=003931a9-7556-4c2c-a010-09cabf9fe821',
-       preserveViewport: true,
-       map: this.map
-     });
+      url: 'https://firebasestorage.googleapis.com/v0/b/univasf-buddy.appspot.com/o/busA_1%20(1).kmz?alt=media&token=003931a9-7556-4c2c-a010-09cabf9fe821',
+      preserveViewport: true,
+      map: this.map
+    });
 
     //  console.log(ctaLayer.getMetadata());
 
@@ -45,9 +44,9 @@ export class RouteDetailsPage {
   }
 
   zoom(stop) {
-      this.map.panTo({lat: -9.43064, lng: -40.50353});
-      this.map.setZoom(16);
-      console.log(this.ctaLayer.getMetadata());
+    this.map.panTo({ lat: -9.43064, lng: -40.50353 });
+    this.map.setZoom(16);
+    console.log(this.ctaLayer.getMetadata());
 
 
   }

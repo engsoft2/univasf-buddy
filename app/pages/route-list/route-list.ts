@@ -2,22 +2,17 @@ import {Page, NavController} from 'ionic-angular';
 import {RouteCard} from '../../components/route-card/route-card';
 import {RouteService} from '../../providers/route-service/route-service';
 
-/*
-  Generated class for the LinesPage page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Page({
   templateUrl: 'build/pages/route-list/route-list.html',
   directives: [RouteCard],
 })
+
 export class RouteListPage {
   searchQuery: string = '';
   routes;
   data;
 
-  constructor(public nav: NavController, public routeData : RouteService) {
+  constructor(public nav: NavController, public routeData: RouteService) {
     this.initializeItems();
   }
 
@@ -58,7 +53,7 @@ export class RouteListPage {
 
     this.routes = this.routes.filter((v) => {
       if (v.onibus.toLowerCase().indexOf(q.toLowerCase()) > -1 ||
-          v.via.toLowerCase().indexOf(q.toLowerCase()) > -1){
+        v.via.toLowerCase().indexOf(q.toLowerCase()) > -1) {
         return true;
       }
       return false;

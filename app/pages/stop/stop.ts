@@ -5,5 +5,5 @@ import {Page, NavController} from 'ionic-angular';
 })
 
 export class StopPage {
-  constructor(public nav: NavController) {}
+  constructor(public nav: NavController) { }
 }

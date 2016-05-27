@@ -11,7 +11,8 @@
     </ion-item>
     <ion-list>
       <button (click)="zoom(stop)" ion-item *ngFor="let r of route.paradas">
-        <span primary item-left>{{r.horario | todate | amDateFormat:'LT'}}</span>{{r.nome_parada}}<br>
+        <span primary item-left>{{r.horario | todate | amDateFormat:'LT'}}</span>{{r.nome_parada}}
+        <br>
         <p>
           <ion-note subtle>{{r.horario | todate | amTimeAgo}}</ion-note>
         </p>
