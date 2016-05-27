@@ -1,12 +1,12 @@
 import {App, Platform} from 'ionic-angular';
 import {Page, NavParams} from 'ionic-angular';
 import {ToDatePipe} from '../../pipes/toDate';
-import {DateFormatPipe} from 'angular2-moment';
+import {TimeAgoPipe, DateFormatPipe} from 'angular2-moment';
 
 
 @Page({
   templateUrl: 'build/pages/route-details/route-details.html',
-  pipes: [ToDatePipe, DateFormatPipe]
+  pipes: [ToDatePipe, TimeAgoPipe, DateFormatPipe]
 })
 
 export class RouteDetailsPage {
