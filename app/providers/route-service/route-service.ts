@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
-import {RouteModel} from '../../models/Route';
 import 'rxjs/add/operator/map';
+import {RouteModel} from '../../models/models';
 
 @Injectable()
 export class RouteService {

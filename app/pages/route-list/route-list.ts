@@ -1,7 +1,7 @@
 import {Page, NavController} from 'ionic-angular';
-import {RouteCard} from '../../components/route-card/route-card';
+import {RouteCard} from '../../components/components';
 import {RouteModel} from '../../models/Route';
-import {RouteService} from '../../providers/route-service/route-service';
+import {RouteService} from '../../providers/providers';
 
 @Page({
   templateUrl: 'build/pages/route-list/route-list.html',

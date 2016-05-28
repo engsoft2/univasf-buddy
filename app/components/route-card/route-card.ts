@@ -1,11 +1,9 @@
 import {Component, Input} from '@angular/core';
-import {NavController} from 'ionic-angular';
-import {RouteDetailsPage} from '../../pages/route-details/route-details';
+import {NavController}    from 'ionic-angular';
+import {RouteDetailsPage} from '../../pages/pages';
+import {RouteModel, StopModel} from '../../models/models';
 import {TimeAgoPipe, DateFormatPipe} from 'angular2-moment';
 import * as moment from 'moment';
-
-import {RouteModel} from '../../models/Route';
-import {StopModel} from '../../models/Stop';
 
 @Component({
     selector: 'route-card',

@@ -1,4 +1,4 @@
-import {StopModel} from './Stop';
+import {StopModel} from './models';
 
 export class RouteModel {
   protected    _id: number;

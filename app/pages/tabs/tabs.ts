@@ -1,6 +1,5 @@
 import {Page} from 'ionic-angular';
-import {StopPage} from '../stop/stop';
-import {RouteListPage} from '../route-list/route-list';
+import {StopPage, RouteListPage} from '../pages';
 
 @Page({
   templateUrl: 'build/pages/tabs/tabs.html'
