@@ -1,26 +1,83 @@
 import {Component, Input} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {RouteDetailsPage} from '../../pages/route-details/route-details';
-import {StopNamePipe} from '../../pipes/stopName';
 import {TimeAgoPipe, DateFormatPipe} from 'angular2-moment';
 import * as moment from 'moment';
 
 import {RouteModel} from '../../models/Route';
+import {StopModel} from '../../models/Stop';
 
 @Component({
     selector: 'route-card',
     templateUrl: 'build/components/route-card/route-card.html',
-    pipes: [StopNamePipe, TimeAgoPipe, DateFormatPipe]
+    pipes: [TimeAgoPipe, DateFormatPipe]
 })
 
 export class RouteCard {
 
     @Input() routes: Array<RouteModel>;
 
-    constructor(public nav: NavController) {}
+    isTimePast: boolean;
+    static   START_PAST: string[] = ['Saiu de Jua', 'Saiu de Petro', 'Saiu do CCA'];
+    static START_FUTURE: string[] = ['Saindo de Jua', 'Saindo de Petro', 'Saindo do CCA'];
+    static     END_PAST: string[] = ['Chegou em Jua', 'Chegou em Petro', 'Chegou no CCA'];
+    static   END_FUTURE: string[] = ['Chegando em Jua', 'Chegando em Petro', 'Chegando no CCA'];
 
-    goToRouteDetail(route: RouteModel) {
+    constructor(public nav: NavController) { }
+
+    goToRouteDetail(route: RouteModel): void {
         this.nav.push(RouteDetailsPage, route);
+    }
+
+    formatRouteInfo(stop: StopModel, stopLocation: string) {
+      let stopName = stop.name;
+      let stopTime = stop.time;
+
+      this.isTimePast = Date.now() > stopTime;
+
+      if (stopLocation === 'first') {
+        return this.formatFirst(stopName, stopTime);
+      } else if (stopLocation === 'last') {
+        return this.formatLast(stopName, stopTime);
+      }
+    }
+
+    private formatFirst(name, hour) {
+      if (name.indexOf('jua') > -1) {
+        if (this.isTimePast) {
+          return RouteCard.START_PAST[0];
+        }
+        return RouteCard.START_FUTURE[0];
+      } else if (name.indexOf('petro') > -1) {
+        if (this.isTimePast) {
+          return RouteCard.START_PAST[1];
+        }
+        return RouteCard.START_FUTURE[0];
+      } else {
+        if (this.isTimePast) {
+          return RouteCard.START_PAST[2];
+        }
+        return RouteCard.START_FUTURE[0];
+      }
+    }
+
+    private formatLast(name, hour) {
+      if (name.indexOf('jua') > -1) {
+        if (this.isTimePast) {
+          return RouteCard.END_PAST[0];
+        }
+        return RouteCard.END_FUTURE[0];
+      } else if (name.indexOf('petro') > -1) {
+        if (this.isTimePast) {
+          return RouteCard.END_PAST[1];
+        }
+        return RouteCard.END_FUTURE[1];
+      } else {
+        if (this.isTimePast) {
+          return RouteCard.END_PAST[2];
+        }
+        return RouteCard.END_FUTURE[2];
+      }
     }
 }
 

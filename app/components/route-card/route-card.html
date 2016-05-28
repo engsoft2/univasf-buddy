@@ -8,13 +8,13 @@
     <ion-item>
       <ion-icon small name="clock" item-left></ion-icon>
       <span primary item-left>{{route.first.time | amDateFormat:'LT'}}</span>
-      {{route.first.name | stopname:'first':route.first.time}} <span favorite class="item-bold">{{route.first.time | amTimeAgo}}</span>
+      {{ formatRouteInfo(route.first, 'first') }} <span favorite class="item-bold">{{route.first.time | amTimeAgo}}</span>
     </ion-item>
 
     <ion-item>
       <ion-icon small name="clock" item-left></ion-icon>
       <span primary item-left>{{route.last.time | amDateFormat:'LT'}}</span>
-      {{route.last.name | stopname:'last':route.last.time}} <span favorite class="item-bold">{{route.last.time | amTimeAgo}}</span>
+      {{ formatRouteInfo(route.last, 'last') }} <span favorite class="item-bold">{{route.last.time | amTimeAgo}}</span>
     </ion-item>
   </ion-list>
 
