@@ -1,5 +1,6 @@
 import {Page, NavController} from 'ionic-angular';
 import {RouteCard} from '../../components/route-card/route-card';
+import {RouteModel} from '../../models/Route';
 import {RouteService} from '../../providers/route-service/route-service';
 
 @Page({
@@ -9,8 +10,8 @@ import {RouteService} from '../../providers/route-service/route-service';
 
 export class RouteListPage {
   searchQuery: string = '';
-  routes;
-  data;
+  private routes: Array<RouteModel>;
+  private data:   Array<RouteModel>;
 
   constructor(public nav: NavController, public routeData: RouteService) {
     this.initializeItems();
@@ -39,6 +40,7 @@ export class RouteListPage {
     );
   }
 
+  // TODO: redo search method
   search(searchbar) {
     // Reset items back to all of the items
     this.routes = this.data;
@@ -52,8 +54,8 @@ export class RouteListPage {
     }
 
     this.routes = this.routes.filter((v) => {
-      if (v.onibus.toLowerCase().indexOf(q.toLowerCase()) > -1 ||
-        v.via.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+      if (v.bus.toLowerCase().indexOf(q.toLowerCase()) > -1 ||
+        v.way.toLowerCase().indexOf(q.toLowerCase()) > -1) {
         return true;
       }
       return false;
