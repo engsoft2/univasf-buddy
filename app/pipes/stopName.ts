@@ -1,71 +1,62 @@
 import {Injectable, Pipe} from '@angular/core';
 
-@Pipe({
-  name: 'stopname'
-})
+@Pipe({ name: 'stopname' })
 
 @Injectable()
 export class StopNamePipe {
+  isTimePast: boolean;
+  static   START_PAST: string[] = ['Saiu de Jua', 'Saiu de Petro', 'Saiu do CCA'];
+  static START_FUTURE: string[] = ['Saindo de Jua', 'Saindo de Petro', 'Saindo do CCA'];
+  static     END_PAST: string[] = ['Chegou em Jua', 'Chegou em Petro', 'Chegou no CCA'];
+  static   END_FUTURE: string[] = ['Chegando em Jua', 'Chegando em Petro', 'Chegando no CCA'];
   /*
     Takes a value and makes it lowercase.
    */
-  transform(value: string, args: string, hour: string) {
-    value = value.toLowerCase();
+  transform(stopName: string, stopLocation: string, hour: number) {
+    this.isTimePast = Date.now() > hour;
 
-    if (args === 'inicial') {
-      console.log('inicial')
-      return this._FormatInicial(value, hour);
-    } else if (args === 'final') {
-      console.log('final')
-      return this._FormatFinal(value, hour);
+    if (stopLocation === 'first') {
+      return this.formatStar(stopName, hour);
+    } else if (stopLocation === 'last') {
+      return this.formatEnd(stopName, hour);
     }
   }
 
-  _parseHour(date) {
-    let a = new Date();
-    let b = new Date();
-
-    b.setHours(Number(date.slice(0, 2)))
-    b.setMinutes(Number(date.slice(3, 5)))
-
-    return a > b;
-  }
-
-  _FormatInicial(name, hour) {
+  formatStar(name, hour) {
     if (name.indexOf('jua') > -1) {
-      if (this._parseHour(hour)) {
-        return 'Saiu de Jua'
+      if (this.isTimePast) {
+        return StopNamePipe.START_PAST[0];
       }
-      return 'Saindo de Jua';
+      return StopNamePipe.START_FUTURE[0];
     } else if (name.indexOf('petro') > -1) {
-      if (this._parseHour(hour)) {
-        return 'Saiu de Petro'
+      if (this.isTimePast) {
+        return StopNamePipe.START_PAST[1];
       }
-      return 'Saindo de Petro';
+      return StopNamePipe.START_FUTURE[0];
     } else {
-      if (this._parseHour(hour)) {
-        return 'Saiu do CCA'
+      if (this.isTimePast) {
+        return StopNamePipe.START_PAST[2];
       }
-      return 'Saindo do CCA';
+      return StopNamePipe.START_FUTURE[0];
     }
   }
 
-  _FormatFinal(name, hour) {
+  formatEnd(name, hour) {
     if (name.indexOf('jua') > -1) {
-      if (this._parseHour(hour)) {
-        return 'Chegou em Jua'
+      if (this.isTimePast) {
+        return StopNamePipe.END_PAST[0];
       }
-      return 'Chegando em Jua';
+      return StopNamePipe.END_FUTURE[0];
     } else if (name.indexOf('petro') > -1) {
-      if (this._parseHour(hour)) {
-        return 'Chegou em Petro'
+      if (this.isTimePast) {
+        return StopNamePipe.END_PAST[1];
       }
-      return 'Chegando em Petro';
+      return StopNamePipe.END_FUTURE[1];
     } else {
-      if (this._parseHour(hour)) {
-        return 'Chegou no CCA'
+      if (this.isTimePast) {
+        return StopNamePipe.END_PAST[2];
       }
-      return 'Chegando no CCA';
+      return StopNamePipe.END_FUTURE[2];
     }
   }
 }
