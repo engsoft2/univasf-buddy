@@ -2,6 +2,7 @@ import {App, Platform} from 'ionic-angular';
 import {Page, NavParams} from 'ionic-angular';
 import {ToDatePipe} from '../../pipes/toDate';
 import {TimeAgoPipe, DateFormatPipe} from 'angular2-moment';
+import {RouteModel} from '../../models/Route';
 
 @Page({
   templateUrl: 'build/pages/route-details/route-details.html',
@@ -9,7 +10,7 @@ import {TimeAgoPipe, DateFormatPipe} from 'angular2-moment';
 })
 
 export class RouteDetailsPage {
-  route: any;
+  route: RouteModel;
   map: any;
   ctaLayer: any;
   constructor(platform: Platform, params: NavParams) {
