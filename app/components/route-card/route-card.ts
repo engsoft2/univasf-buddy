@@ -66,6 +66,6 @@ moment.locale('pt-br', {
         y: 'um ano',
         yy: '%d anos'
     },
-    ordinalParse: /\d{1,2}º/,
-    ordinal: '%dº'
+    // ordinalParse: /\d{1,2}º/,
+    // ordinal: '%dº'
 });
