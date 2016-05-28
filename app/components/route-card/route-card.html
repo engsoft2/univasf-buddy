@@ -1,26 +1,26 @@
-<ion-card *ngFor="let r of routes" >
+<ion-card *ngFor="let route of routes" >
 
   <ion-item>
-    <h2><ion-icon small name="bus" primary></ion-icon><span primary item-left> Busão {{r.onibus}}</span> {{r.via}}</h2>
+    <h2><ion-icon small name="bus" primary></ion-icon><span primary item-left> Busão {{route.bus}}</span> {{route.way}}</h2>
   </ion-item>
 
   <ion-list>
     <ion-item>
       <ion-icon small name="clock" item-left></ion-icon>
-      <span primary item-left>{{r.ponto_inicial.horario | todate | amDateFormat:'LT'}}</span>
-      {{r.ponto_inicial.nome | stopname:'inicial':r.ponto_inicial.horario}} <span favorite class="item-bold">{{r.ponto_inicial.horario | todate | amTimeAgo}}</span>
+      <span primary item-left>{{route.first.time | amDateFormat:'LT'}}</span>
+      {{route.first.name | stopname:'first':route.first.time}} <span favorite class="item-bold">{{route.first.time | amTimeAgo}}</span>
     </ion-item>
 
     <ion-item>
-      <ion-icon small name="walk" item-left></ion-icon>
-      <span primary item-left>{{r.ponto_final.horario | todate | amDateFormat:'LT'}}</span>
-      {{r.ponto_final.nome | stopname:'final':r.ponto_final.horario}} <span favorite class="item-bold">{{r.ponto_final.horario | todate | amTimeAgo}}</span>
+      <ion-icon small name="clock" item-left></ion-icon>
+      <span primary item-left>{{route.last.time | amDateFormat:'LT'}}</span>
+      {{route.last.name | stopname:'last':route.last.time}} <span favorite class="item-bold">{{route.last.time | amTimeAgo}}</span>
     </ion-item>
   </ion-list>
 
   <ion-item>
-    <ion-icon small name="pin" item-left></ion-icon><span item-left>{{r.paradas.length}} Paradas</span>
-    <button primary clear item-right (click)="goToRouteDetail(r)">
+    <ion-icon small name="pin" item-left></ion-icon><span item-left>{{route.stops.length}} Paradas</span>
+    <button primary clear item-right (click)="goToRouteDetail(route)">
       <ion-icon name="navigate"></ion-icon>
       Detalhes
     </button>
