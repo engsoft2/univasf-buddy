@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
+import {RouteModel} from '../../models/Route';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class RouteService {
-  data: any = null;
+  data: Array<RouteModel> = undefined;
 
   constructor(public http: Http) { }
 
@@ -25,7 +26,10 @@ export class RouteService {
         .subscribe(data => {
           // we've got back the raw data, now generate the core schedule data
           // and save the data for later reference
-          this.data = data;
+          this.data = data.map((v) => {
+            return new RouteModel(v);
+          });
+
           resolve(this.data);
         });
     });
