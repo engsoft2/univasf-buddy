@@ -5,7 +5,7 @@ import {RouteModel} from '../../models/models';
 
 @Injectable()
 export class RouteService {
-  data: Array<RouteModel> = undefined;
+  private data: Array<RouteModel> = undefined;
 
   constructor(public http: Http) { }
 

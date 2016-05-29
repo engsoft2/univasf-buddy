@@ -8,9 +8,10 @@ import {RouteModel} from '../../models/models';
 })
 
 export class RouteDetailsPage {
-  route: RouteModel;
-  map: any;
-  ctaLayer: any;
+  private    route: RouteModel;
+  private      map: any;
+  private ctaLayer: any;
+
   constructor(platform: Platform, params: NavParams) {
     this.route = params.data;
     platform.ready().then(() => {
@@ -32,22 +33,11 @@ export class RouteDetailsPage {
       map: this.map
     });
 
-    //  console.log(ctaLayer.getMetadata());
-
-    // ctaLayer = new google.maps.KmlLayer({
-    //    url: 'https://firebasestorage.googleapis.com/v0/b/univasf-buddy.appspot.com/o/arrow.kmz?alt=media&token=a5ab07be-d9a2-4a63-b629-bbfd322f0de9',
-    //    map: map
-    //  });
-
-
   }
 
   zoom(stop) {
     this.map.panTo({ lat: -9.43064, lng: -40.50353 });
     this.map.setZoom(16);
-    console.log(this.ctaLayer.getMetadata());
-
-
   }
 
 }
