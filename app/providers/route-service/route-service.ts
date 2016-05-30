@@ -1,18 +1,19 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
-import {RouteModel} from '../../models/models';
+import {RouteModel, StopModel} from '../../models/models';
 
 @Injectable()
 export class RouteService {
-  private data: Array<RouteModel> = undefined;
+  private routes: Array<RouteModel> = undefined;
+  private _stops: Array<StopModel> = undefined;
 
   constructor(public http: Http) { }
 
   load() {
-    if (this.data) {
+    if (this.routes) {
       // already loaded data
-      return Promise.resolve(this.data);
+      return Promise.resolve(this.routes);
     }
 
     // don't have the data yet
@@ -26,11 +27,11 @@ export class RouteService {
         .subscribe(data => {
           // we've got back the raw data, now generate the core schedule data
           // and save the data for later reference
-          this.data = data.map((v) => {
+          this.routes = data.map((v) => {
             return new RouteModel(v);
           });
 
-          resolve(this.data);
+          resolve(this.routes);
         });
     });
   }
@@ -39,6 +40,30 @@ export class RouteService {
     return this.load().then(data => {
       return data;
     });
+  }
+
+  loadStops() {
+    if (this._stops) {
+      return Promise.resolve(this._stops);
+    }
+
+    return new Promise(resolve => {
+      this.http.get('http://localhost:8000/paradas')
+        .map(res => res.json())
+        .subscribe(data => {
+          this._stops = data.map(v => {
+            return new StopModel(v);
+          });
+
+          resolve(this._stops);
+        });
+    });
+  }
+
+  stops() {
+    return this.loadStops().then(data => {
+      return data;
+    })
   }
 
   getLine(id) {
