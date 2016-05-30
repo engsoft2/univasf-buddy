@@ -9,7 +9,7 @@ import {StopModel} from '../../models/models';
 export class StopPage {
   private searchQuery: string;
   private stops: Array<StopModel> = undefined;
-  private data: Array<StopModel> = undefined;
+  private data:  Array<StopModel> = undefined;
 
   constructor(public nav: NavController, public routeData: RouteService) { }
 
