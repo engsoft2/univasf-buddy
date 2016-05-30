@@ -6,9 +6,11 @@ export class StopModel {
   protected  _lng: number;
 
   constructor(data: any) {
-    this._id   = data.ponto_id;
-    this._name = data.nome_parada;
-    this._time = this.toDate(data.horario);
+    this._id   = data.id;
+    this._name = data.name;
+    this._time = this.toDate(data.time);
+    this._lat  = data.lat;
+    this._lng  = data.lng;
   }
 
   get name() {
@@ -20,11 +22,11 @@ export class StopModel {
   }
 
   get lat() {
-    return this.lat;
+    return this._lat;
   }
 
   get lng() {
-    return this.lng;
+    return this._lng;
   }
 
   /**
@@ -33,6 +35,10 @@ export class StopModel {
    * @return {number} Date - a new Date with Hour and Minutes from @param
    * */
   private toDate(date): number {
+    if (!date) {
+      return undefined;
+    }
+
     return new Date().setHours(
         Number(date.slice(0, 2)),
         Number(date.slice(3, 5)), 0, 0);

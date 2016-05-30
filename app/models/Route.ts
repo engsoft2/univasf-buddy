@@ -7,11 +7,10 @@ export class RouteModel {
   protected _stops: Array<StopModel>;
 
   constructor(data: any) {
-    console.log('stopmodel');
-    this._id     = data.rota;
-    this._bus    = data.onibus;
-    this._way    = data.via;
-    this._stops  = data.paradas.map((v) => {
+    this._id     = data.id;
+    this._bus    = data.bus;
+    this._way    = data.way;
+    this._stops  = data.stops.map((v) => {
       return new StopModel(v);
     });
   }
