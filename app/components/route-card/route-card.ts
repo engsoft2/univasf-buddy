@@ -28,7 +28,7 @@ export class RouteCard {
     }
 
     formatRouteInfo(stop: StopModel, stopLocation: string) {
-      let stopName = stop.name;
+      let stopName = stop.name.toLowerCase();
       let stopTime = stop.time;
 
       this.isTimePast = Date.now() > stopTime;
@@ -50,12 +50,12 @@ export class RouteCard {
         if (this.isTimePast) {
           return RouteCard.START_PAST[1];
         }
-        return RouteCard.START_FUTURE[0];
+        return RouteCard.START_FUTURE[1];
       } else {
         if (this.isTimePast) {
           return RouteCard.START_PAST[2];
         }
-        return RouteCard.START_FUTURE[0];
+        return RouteCard.START_FUTURE[2];
       }
     }
 
