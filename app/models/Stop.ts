@@ -13,6 +13,10 @@ export class StopModel {
     this._lng  = data.lng;
   }
 
+  get id() {
+    return this._id;
+  }
+
   get name() {
     return this._name;
   }
