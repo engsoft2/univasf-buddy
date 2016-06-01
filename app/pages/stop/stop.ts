@@ -20,7 +20,7 @@ export class StopPage {
     });
 
     this.presentLoadingDefault(loading);
-    this.routeData.stops().then(data => {
+    this.routeData.stops.then(data => {
       this.data = data;
       loading.dismiss();
     });

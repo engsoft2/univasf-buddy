@@ -22,7 +22,7 @@ export class StopDetailsPage {
     });
 
     this.presentLoadingDefault(loading);
-    this.service.getRoutes(this.stop.id).then(
+    this.service.getRoutesById(this.stop.id).then(
       data => {
         this.routes = data;
         loading.dismiss();

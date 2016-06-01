@@ -20,7 +20,7 @@ export class RouteListPage {
 
   // TODO: mv to ngOnInit()
   private initializeItems(load) {
-    this.routeData.getAllLines().then(
+    this.routeData.routes.then(
       data => {
         this.routes = data;
         this.data = data;
