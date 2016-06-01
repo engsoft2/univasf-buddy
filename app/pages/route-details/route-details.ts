@@ -1,6 +1,6 @@
 import {App, Platform, Page, NavParams} from 'ionic-angular';
 import {TimeAgoPipe, DateFormatPipe} from 'angular2-moment';
-import {RouteModel} from '../../models/models';
+import {StopModel, RouteModel} from '../../models/models';
 
 @Page({
   templateUrl: 'build/pages/route-details/route-details.html',
@@ -36,8 +36,10 @@ export class RouteDetailsPage {
   }
 
   zoom(stop) {
-    this.map.panTo({ lat: -9.43064, lng: -40.50353 });
-    this.map.setZoom(16);
+    // save check
+    if (!stop && !stop.lat) {
+      this.map.panTo({ lat: parseFloat(stop.lat), lng: parseFloat(stop.lng)});
+      this.map.setZoom(16);
+    }
   }
-
 }

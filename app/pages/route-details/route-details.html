@@ -10,7 +10,7 @@
       <h2>{{route.way}}</h2>
     </ion-item>
     <ion-list>
-      <button (click)="zoom(r)" ion-item *ngFor="let stop of route.stops">
+      <button (click)="zoom(stop)" ion-item *ngFor="let stop of route.stops">
         <span primary item-left>{{stop.time | amDateFormat:'LT'}}</span>{{stop.name}}
         <br>
         <p>
