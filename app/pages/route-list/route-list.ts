@@ -12,10 +12,34 @@ export class RouteListPage {
   private searchQuery: string = '';
   private routes: Array<RouteModel>;
   private data:   Array<RouteModel>;
+  private buses: Array<{name: string, isChecked: boolean}>;
+  private filter: Array<string>;
 
   constructor(public nav: NavController, public routeData: RouteService) {
     // this.initializeItems();
     this.presentLoadingDefault()
+    this.buses = [
+      {name: "A", isChecked: true},
+      {name: "B", isChecked: true},
+      {name: "C", isChecked: true},
+      {name: "D", isChecked: true},
+      {name: "E", isChecked: true},
+      {name: "F", isChecked: true},
+      {name: "G", isChecked: true},
+    ];
+  }
+
+  private filterBus() {
+    // Reset items back to all of the items
+    this.routes = this.data;
+
+    let q = this.filter;
+    // save check
+    if (this.routes) {
+      this.routes = this.routes.filter((v) => {
+        return q.indexOf(v.bus) > -1;
+      });
+    }
   }
 
   // TODO: mv to ngOnInit()
@@ -24,13 +48,12 @@ export class RouteListPage {
       data => {
         this.routes = data;
         this.data = data;
-        console.log('dismist initializeItems');
         load.dismiss();
       }
     );
   }
 
-  presentLoadingDefault() {
+  private presentLoadingDefault() {
     let loading = Loading.create({
       content: 'Please wait...'
     });
@@ -49,30 +72,5 @@ export class RouteListPage {
       console.log('dismiss loading');
       loading.dismiss();
     }, 5000);
-  }
-
-  // TODO: redo search method
-  private search(searchbar) {
-    // Reset items back to all of the items
-    this.routes = this.data;
-
-    // set q to the value of the searchbar
-    var q = searchbar.value;
-
-    // if the value is an empty string don't filter the items
-    if (q.trim() == '') {
-      return;
-    }
-
-    // save check
-    if (this.routes) {
-      this.routes = this.routes.filter((v) => {
-        if (v.bus.toLowerCase().indexOf(q.toLowerCase()) > -1 ||
-          v.way.toLowerCase().indexOf(q.toLowerCase()) > -1) {
-          return true;
-        }
-        return false;
-      });
-    }
   }
 }

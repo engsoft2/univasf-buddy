@@ -1,7 +1,16 @@
 <ion-navbar *navbar>
-  <ion-searchbar placeholder="Digite para pesquisar linhas" [(ngModel)]="searchQuery" (input)="search($event)"></ion-searchbar>
+  <ion-title>
+    Monstrando <span *ngIf="routes">{{routes.length}} rotas</span>
+  </ion-title>
 </ion-navbar>
 
 <ion-content class="route-list">
+  <ion-item>
+    <ion-label>Filtrar por Ônibus</ion-label>
+    <ion-select multiple="true" (change)="filterBus()" [(ngModel)]="filter">
+      <ion-option *ngFor="let bus of buses" [checked]="bus.isChecked">{{bus.name}}</ion-option>
+    </ion-select>
+  </ion-item>
+
   <route-card [routes]="routes"></route-card>
 </ion-content>
