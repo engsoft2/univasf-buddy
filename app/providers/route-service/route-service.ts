@@ -10,6 +10,32 @@ export class RouteService {
 
   constructor(public http: Http) { }
 
+  get routes() {
+    return this.loadRoutes().then(data => {
+      return data;
+    });
+  }
+
+  get stops() {
+    return this.loadStops().then(data => {
+      return data;
+    })
+  }
+
+  getRoutesById(id) {
+    let stops: Array<StopModel> = undefined;
+
+    return new Promise(resolve => {
+      this.http.get('http://localhost:8000/rotasAPI/' + id)
+      // this.http.get('http://162.243.88.81/rotasAPI/' + id)
+        .map(res => res.json())
+        .subscribe(data => {
+          stops = data.map((v) => { return new RouteModel(v); });
+          resolve(stops);
+        })
+    });
+  }
+
   private loadRoutes() {
     if (this._routes) {
       // already loaded data
@@ -21,8 +47,8 @@ export class RouteService {
       // We're using Angular Http provider to request the data,
       // then on the response it'll map the JSON data to a parsed JS object.
       // Next we process the data and resolve the promise with the new data.
-      // this.http.get('http://localhost:8000/rotas')
-      this.http.get('http://162.243.88.81/rotas')
+      this.http.get('http://localhost:8000/rotas')
+      // this.http.get('http://162.243.88.81/rotas')
         .map(res => res.json())
         .subscribe(data => {
           // we've got back the raw data, now generate the core schedule data
@@ -36,20 +62,14 @@ export class RouteService {
     });
   }
 
-  get routes() {
-    return this.loadRoutes().then(data => {
-      return data;
-    });
-  }
-
   private loadStops() {
     if (this._stops) {
       return Promise.resolve(this._stops);
     }
 
     return new Promise(resolve => {
-      // this.http.get('http://localhost:8000/paradas')
-      this.http.get('http://162.243.88.81/paradas')
+      this.http.get('http://localhost:8000/paradas')
+      // this.http.get('http://162.243.88.81/paradas')
         .map(res => res.json())
         .subscribe(data => {
           this._stops = data.map(v => {
@@ -58,25 +78,6 @@ export class RouteService {
 
           resolve(this._stops);
         });
-    });
-  }
-
-  get stops() {
-    return this.loadStops().then(data => {
-      return data;
-    })
-  }
-
-  getRoutesById(id) {
-    let stops: Array<StopModel> = undefined;
-    return new Promise(resolve => {
-      // this.http.get('http://localhost:8000/rotasAPI/' + id)
-      this.http.get('http://162.243.88.81/rotasAPI/' + id)
-        .map(res => res.json())
-        .subscribe(data => {
-          stops = data.map((v) => { return new RouteModel(v); });
-          resolve(stops);
-        })
     });
   }
 }
