@@ -1,7 +1,18 @@
 <ion-navbar *navbar>
-  <ion-searchbar placeholder="Para aonde você quer ir?"></ion-searchbar>
+  <ion-searchbar placeholder="Para aonde você quer ir?" [(ngModel)]="searchQuery" (input)="search($event)"></ion-searchbar>
 </ion-navbar>
 
-<ion-content padding class="stop">
-
+<ion-content class="stop">
+  <ion-card *ngIf="!stops">
+    <ion-card-header>
+    <ion-icon small item-left name="search"></ion-icon>
+      Procure por uma parada acima.
+  </ion-card-header>
+  </ion-card>
+  <ion-card *ngFor="let stop of stops">
+    <button ion-item (click)="goToRoutes(stop)">
+      <ion-icon small name="pin" item-left></ion-icon>
+      <h2>{{stop.name}}</h2>
+    </button>
+  </ion-card>
 </ion-content>

@@ -1,19 +1,25 @@
-import {App, Platform} from 'ionic-angular';
-import {Page, NavParams} from 'ionic-angular';
-import {ToDatePipe} from '../../pipes/toDate';
+import {App, Platform, Page, NavParams} from 'ionic-angular';
 import {TimeAgoPipe, DateFormatPipe} from 'angular2-moment';
+import {StopModel, RouteModel} from '../../models/models';
 
 @Page({
   templateUrl: 'build/pages/route-details/route-details.html',
-  pipes: [ToDatePipe, TimeAgoPipe, DateFormatPipe]
+  pipes: [TimeAgoPipe, DateFormatPipe]
 })
 
 export class RouteDetailsPage {
-  route: any;
-  map: any;
-  ctaLayer: any;
+  private        route: RouteModel;
+  private          map: any;
+  private     ctaLayer: any;
+  private   infowindow: any;
+
+  // Each marker is labeled with a single alphabetical character.
+  private     labels: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789';
+  private labelIndex: number = 0;
+
   constructor(platform: Platform, params: NavParams) {
     this.route = params.data;
+    console.log(this.route);
     platform.ready().then(() => {
       this.initMap();
     });
@@ -27,28 +33,50 @@ export class RouteDetailsPage {
       zoom: 13
     });
 
-    this.ctaLayer = new google.maps.KmlLayer({
-      url: 'https://firebasestorage.googleapis.com/v0/b/univasf-buddy.appspot.com/o/busA_1%20(1).kmz?alt=media&token=003931a9-7556-4c2c-a010-09cabf9fe821',
-      preserveViewport: true,
+    this.infowindow = new google.maps.InfoWindow({
+      content: ''
+    });
+
+    this.route.stops.forEach(v => {
+      this.addMarker(v, this.infowindow);
+    });
+  }
+
+  // Adds a marker to the map.
+  addMarker(stop, infowindow) {
+
+    // Add the marker at the clicked location, and add the next-available label
+    // from the array of alphabetical characters.
+    let marker = new google.maps.Marker({
+      position: { lat: Number(stop.lat), lng: Number(stop.lng) },
+      label: this.labels[this.labelIndex++ % this.labels.length],
       map: this.map
     });
 
-    //  console.log(ctaLayer.getMetadata());
-
-    // ctaLayer = new google.maps.KmlLayer({
-    //    url: 'https://firebasestorage.googleapis.com/v0/b/univasf-buddy.appspot.com/o/arrow.kmz?alt=media&token=a5ab07be-d9a2-4a63-b629-bbfd322f0de9',
-    //    map: map
-    //  });
-
-
+    marker.addListener('click', () => {
+      this.openInfoWindow(stop.name, marker);
+   });
   }
 
   zoom(stop) {
-    this.map.panTo({ lat: -9.43064, lng: -40.50353 });
-    this.map.setZoom(16);
-    console.log(this.ctaLayer.getMetadata());
+    // save check
+    if (stop && stop.lat) {
+        let latLng = { lat: parseFloat(stop.lat), lng: parseFloat(stop.lng)};
+        this.map.panTo(latLng);
+        this.map.setZoom(16);
 
+        // create 'empty' marker to open infowindow
+        let marker = new google.maps.Marker({
+          position: latLng,
+          map: this.map
+        });
 
+        this.openInfoWindow(stop.name, marker);
+    }
   }
 
+  openInfoWindow(content, marker) {
+    this.infowindow.setContent('<h6>' + content + '</h6>');
+    this.infowindow.open(this.map, marker);
+  }
 }

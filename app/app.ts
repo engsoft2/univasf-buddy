@@ -1,8 +1,7 @@
 import {App, Platform} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
-import {TabsPage} from './pages/tabs/tabs';
-import {RouteService} from './providers/route-service/route-service';
-
+import {TabsPage} from './pages/pages';
+import {RouteService} from './providers/providers';
 
 @App({
   template: '<ion-nav [root]="rootPage"></ion-nav>',
