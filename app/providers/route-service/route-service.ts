@@ -23,15 +23,15 @@ export class RouteService {
   }
 
   getRoutesById(id) {
-    let stops: Array<StopModel> = undefined;
+    let routes: Array<RouteModel> = undefined;
 
     return new Promise(resolve => {
       this.http.get('http://localhost:8000/rotasAPI/' + id)
       // this.http.get('http://162.243.88.81/rotasAPI/' + id)
         .map(res => res.json())
         .subscribe(data => {
-          stops = data.map((v) => { return new RouteModel(v); });
-          resolve(stops);
+          routes = data.map((v) => { return new RouteModel(v); });
+          resolve(routes);
         })
     });
   }
