@@ -12,21 +12,12 @@ export class RouteListPage {
   private searchQuery: string = '';
   private routes: Array<RouteModel>;
   private data:   Array<RouteModel>;
-  private buses: Array<{name: string, isChecked: boolean}>;
+  private buses = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
   private filter: Array<string>;
 
   constructor(public nav: NavController, public routeData: RouteService) {
     // this.initializeItems();
     this.presentLoadingDefault()
-    this.buses = [
-      {name: "A", isChecked: true},
-      {name: "B", isChecked: true},
-      {name: "C", isChecked: true},
-      {name: "D", isChecked: true},
-      {name: "E", isChecked: true},
-      {name: "F", isChecked: true},
-      {name: "G", isChecked: true},
-    ];
   }
 
   private filterBus() {

@@ -8,7 +8,7 @@
   <ion-item>
     <ion-label>Filtrar por Ônibus</ion-label>
     <ion-select multiple="true" (change)="filterBus()" [(ngModel)]="filter">
-      <ion-option *ngFor="let bus of buses" [checked]="bus.isChecked">{{bus.name}}</ion-option>
+      <ion-option *ngFor="let bus of buses" [checked]="true">{{bus}}</ion-option>
     </ion-select>
   </ion-item>
 
