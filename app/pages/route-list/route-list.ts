@@ -11,9 +11,9 @@ import {RouteService} from '../../providers/providers';
 export class RouteListPage {
   private searchQuery: string = '';
   private routes: Array<RouteModel>;
-  private data:   Array<RouteModel>;
-  private buses = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+  private   data: Array<RouteModel>;
   private filter: Array<string>;
+  private buses = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
 
   constructor(public nav: NavController, public routeData: RouteService) {
     // this.initializeItems();
@@ -28,6 +28,10 @@ export class RouteListPage {
     // save check
     if (this.routes) {
       this.routes = this.routes.filter((v) => {
+        // little hack b/c there is one case where v.bus = C/D
+        if (v.bus.length > 1) {
+          return q.indexOf(v.bus[0]) > -1 || q.indexOf(v.bus[2]) > -1;
+        }
         return q.indexOf(v.bus) > -1;
       });
     }
