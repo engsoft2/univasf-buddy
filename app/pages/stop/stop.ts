@@ -1,6 +1,6 @@
 import {Alert, Loading, Page, NavController} from 'ionic-angular';
-import {RouteService} from '../../providers/providers';
-import {StopModel} from '../../models/models';
+import {RouteService}    from '../../providers/providers';
+import {StopModel}       from '../../models/models';
 import {StopDetailsPage} from '../pages';
 
 @Page({

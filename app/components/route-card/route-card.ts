@@ -1,8 +1,8 @@
 import {Component, Input} from '@angular/core';
 import {NavController}    from 'ionic-angular';
 import {RouteDetailsPage} from '../../pages/pages';
-import {RouteModel, StopModel} from '../../models/models';
-import {TimeAgoPipe, DateFormatPipe} from 'angular2-moment';
+import {RouteModel, StopModel}        from '../../models/models';
+import {TimeAgoPipe, DateFormatPipe}  from 'angular2-moment';
 import * as moment from 'moment';
 
 @Component({

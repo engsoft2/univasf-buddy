@@ -1,7 +1,7 @@
 import {Alert, Loading, Page, NavController, NavParams} from 'ionic-angular';
-import {RouteService} from '../../providers/providers';
-import {StopModel} from '../../models/models';
 import {RouteCard}    from '../../components/components';
+import {RouteService} from '../../providers/providers';
+import {StopModel}    from '../../models/models';
 
 @Page({
   templateUrl: 'build/pages/stop-details/stop-details.html',
@@ -9,7 +9,7 @@ import {RouteCard}    from '../../components/components';
 })
 
 export class StopDetailsPage {
-  stop: any;
+    stop: any;
   routes: any;
 
   constructor(public nav: NavController, params: NavParams, public service: RouteService) {

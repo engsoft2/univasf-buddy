@@ -1,6 +1,6 @@
 import {App, Platform, Page, NavParams} from 'ionic-angular';
-import {TimeAgoPipe, DateFormatPipe} from 'angular2-moment';
-import {StopModel, RouteModel} from '../../models/models';
+import {TimeAgoPipe, DateFormatPipe}    from 'angular2-moment';
+import {StopModel, RouteModel}          from '../../models/models';
 
 @Page({
   templateUrl: 'build/pages/route-details/route-details.html',
