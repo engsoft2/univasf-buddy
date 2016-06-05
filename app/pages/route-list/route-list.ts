@@ -4,7 +4,7 @@ import {RouteModel}   from '../../models/models';
 import {RouteService} from '../../providers/providers';
 
 // type of filter
-enum FilterType {TODOS, CIRCULANDO, ACIRCULAR}
+enum FilterType { TODOS, CIRCULANDO, ACIRCULAR }
 
 @Page({
   templateUrl: 'build/pages/route-list/route-list.html',
@@ -50,37 +50,37 @@ export class RouteListPage {
 
     if (this._filterBy != FilterType.TODOS && isToFilter) {
       this._filterBy == FilterType.CIRCULANDO ?
-          this.filterBy(FilterType.CIRCULANDO) :
-          this.filterBy(FilterType.ACIRCULAR);
+        this.filterBy(FilterType.CIRCULANDO) :
+        this.filterBy(FilterType.ACIRCULAR);
     }
   }
 
   private filterBy(filter: FilterType) {
-      // save check
-      if (!this.routes) return;
+    // save check
+    if (!this.routes) return;
 
-      // first filter by bus
-      this.filterByBus();
+    // first filter by bus
+    this.filterByBus();
 
-      // update UI - button that represent the filter changes its background color
-      this._filterBy = filter;
+    // update UI - button that represent the filter changes its background color
+    this._filterBy = filter;
 
-      switch(filter) {
-        case FilterType.CIRCULANDO:
-            this.routes = this.routes.filter(v => {
-              // Um onibus esta circulando quando o horario da primeira parada
-              // ja passou e o da ultima ainda nao.
-              return v.first.time <= Date.now() && v.last.time >= Date.now();
-            });
-          break;
-        case FilterType.ACIRCULAR:
-            this.routes = this.routes.filter(v => {
-              // um onibus vai circular quando o horario da primeira parada
-              // ainda nao passou
-              return v.first.time > Date.now();
-            });
-          break;
-      }
+    switch (filter) {
+      case FilterType.CIRCULANDO:
+        this.routes = this.routes.filter(v => {
+          // Um onibus esta circulando quando o horario da primeira parada
+          // ja passou e o da ultima ainda nao.
+          return v.first.time <= Date.now() && v.last.time >= Date.now();
+        });
+        break;
+      case FilterType.ACIRCULAR:
+        this.routes = this.routes.filter(v => {
+          // um onibus vai circular quando o horario da primeira parada
+          // ainda nao passou
+          return v.first.time > Date.now();
+        });
+        break;
+    }
   }
 
   // TODO: mv to ngOnInit()
@@ -88,7 +88,7 @@ export class RouteListPage {
     this.routeData.routes.then(
       data => {
         this.routes = data;
-        this.backup= data;
+        this.backup = data;
         load.dismiss();
       }
     );
