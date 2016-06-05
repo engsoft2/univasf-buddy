@@ -8,21 +8,16 @@ import {StopModel, RouteModel}          from '../../models/models';
 })
 
 export class RouteDetailsPage {
-  private        route: RouteModel;
-  private          map: any;
-  private     ctaLayer: any;
-  private   infowindow: any;
-
-  // Each marker is labeled with a single alphabetical character.
-  private     labels: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789';
-  private labelIndex: number = 0;
+  private route: RouteModel;
+  private map: any;
+  private marker: any;
 
   constructor(platform: Platform, params: NavParams) {
     this.route = params.data;
-    console.log(this.route);
-    platform.ready().then(() => {
-      this.initMap();
-    });
+  }
+
+  ngOnInit() {
+    this.initMap();
   }
 
   initMap() {
@@ -30,53 +25,49 @@ export class RouteDetailsPage {
 
     this.map = new google.maps.Map(mapEle, {
       center: { lat: -9.42044, lng: -40.50367 },
-      zoom: 13
+      zoomControl: true,
+      mapTypeControl: false,
+      scaleControl: false,
+      streetViewControl: true,
+      rotateControl: true,
+      fullscreenControl: true,
+      zoom: 14
     });
 
-    this.infowindow = new google.maps.InfoWindow({
-      content: ''
+    let layer = new google.maps.FusionTablesLayer({
+      query: {
+        select: "col2",
+        from: "1LBauH-AOJ15r1uAEmnctJYhfQfpNJtdBcJFftuak",
+        where: ""
+      },
+      options: {
+        styleId: 2,
+        templateId: 2
+      }
     });
 
-    this.route.stops.forEach(v => {
-      this.addMarker(v, this.infowindow);
-    });
+    layer.setMap(this.map);
   }
 
-  // Adds a marker to the map.
-  addMarker(stop, infowindow) {
-
-    // Add the marker at the clicked location, and add the next-available label
-    // from the array of alphabetical characters.
-    let marker = new google.maps.Marker({
-      position: { lat: Number(stop.lat), lng: Number(stop.lng) },
-      label: this.labels[this.labelIndex++ % this.labels.length],
-      map: this.map
-    });
-
-    marker.addListener('click', () => {
-      this.openInfoWindow(stop.name, marker);
-   });
-  }
-
-  zoom(stop) {
+  showMarkerAndZoom(stop) {
     // save check
     if (stop && stop.lat) {
-        let latLng = { lat: parseFloat(stop.lat), lng: parseFloat(stop.lng)};
-        this.map.panTo(latLng);
-        this.map.setZoom(16);
+      let latLng = { lat: parseFloat(stop.lat), lng: parseFloat(stop.lng) };
 
-        // create 'empty' marker to open infowindow
-        let marker = new google.maps.Marker({
-          position: latLng,
-          map: this.map
-        });
+      this.map.panTo(latLng);
+      this.map.setZoom(14);
 
-        this.openInfoWindow(stop.name, marker);
+      // clear marker - just to show one marker at a time
+      if (this.marker) {
+        this.marker.setMap(null);
+      }
+
+      // create marker
+      this.marker = new google.maps.Marker({
+        position: latLng,
+        animation: google.maps.Animation.BOUNCE,
+        map: this.map,
+      });
     }
-  }
-
-  openInfoWindow(content, marker) {
-    this.infowindow.setContent('<h6>' + content + '</h6>');
-    this.infowindow.open(this.map, marker);
   }
 }
