@@ -1,16 +1,33 @@
 <ion-navbar *navbar>
   <ion-title>
-    Mostrando <span *ngIf="routes">{{routes.length}} rotas</span>
+  <div *ngIf="routes" [ngSwitch]="routes.length">
+    <span *ngSwitchWhen="0">Nenhuma rota</span>
+    <span *ngSwitchWhen="1">Mostrando {{routes.length}} rota</span>
+    <span *ngSwitchDefault>Mostrando {{routes.length}} rotas</span>
+  </div>
   </ion-title>
 </ion-navbar>
 
 <ion-content class="route-list">
   <ion-item>
     <ion-label>Filtrar por Ônibus</ion-label>
-    <ion-select multiple="true" (change)="filterBus()" [(ngModel)]="filter">
+    <ion-select multiple="true" (change)="filterByBus(true)" [(ngModel)]="filter">
       <ion-option *ngFor="let bus of buses" [checked]="true">{{bus}}</ion-option>
     </ion-select>
   </ion-item>
-
+  <ion-row center>
+    <ion-col width-33 text-center>
+      <button small clear (click)="filterBy(FilterType.TODOS)"
+        [ngClass]="{active: _filterBy==FilterType.TODOS}">Todas</button>
+    </ion-col>
+    <ion-col width-33 text-center>
+      <button small clear favorite (click)="filterBy(FilterType.CIRCULANDO)"
+      [ngClass]="{active: _filterBy==FilterType.CIRCULANDO}">Circulando</button>
+    </ion-col>
+    <ion-col width-33 text-center>
+      <button small clear (click)="filterBy(FilterType.ACIRCULAR)"
+      [ngClass]="{active: _filterBy==FilterType.ACIRCULAR}">à circular</button>
+    </ion-col>
+  </ion-row>
   <route-card [routes]="routes"></route-card>
 </ion-content>
