@@ -25,7 +25,9 @@ export class RouteListPage {
   constructor(public nav: NavController, public routeData: RouteService) {
     this._filterBy = FilterType.TODOS;
     this.filter = this.buses;
-    console.log('constructor');
+  }
+
+  ngOnInit() {
     this.presentLoadingDefault();
   }
 
