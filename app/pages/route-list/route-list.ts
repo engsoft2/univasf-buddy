@@ -28,9 +28,17 @@ export class RouteListPage {
   }
 
   ngOnInit() {
-    this.presentLoadingDefault();
+    this.initializeItems();
   }
 
+  initializeItems() {
+    this.routeData.routes.then(
+      data => {
+        this.routes = data;
+        this.backup = data;
+      }
+    );
+  }
 
   private filterByBus(isToFilter?: boolean) {
     // Reset items back to all of the items
@@ -83,37 +91,5 @@ export class RouteListPage {
         });
         break;
     }
-  }
-
-  // TODO: mv to ngOnInit()
-  private initializeItems(load) {
-    this.routeData.routes.then(
-      data => {
-        this.routes = data;
-        this.backup = data;
-        load.dismiss();
-      }
-    );
-  }
-
-  private presentLoadingDefault() {
-    let loading = Loading.create({
-      content: 'Please wait...'
-    });
-
-    this.nav.present(loading);
-
-    this.initializeItems(loading);
-
-    setTimeout(() => {
-      if (!this.backup) {
-        // TODO: present info to user
-        // TODO: connection slow, etc..
-        console.log('not ok');
-      }
-
-      console.log('dismiss loading');
-      loading.dismiss();
-    }, 5000);
   }
 }

@@ -1,4 +1,7 @@
 <ion-navbar *navbar>
+  <button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
   <ion-title>
     <div *ngIf="routes" [ngSwitch]="routes.length">
       <span *ngSwitchWhen="0">Nenhuma rota</span>

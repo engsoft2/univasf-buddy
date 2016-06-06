@@ -26,8 +26,8 @@ export class RouteService {
     let routes: Array<RouteModel> = undefined;
 
     return new Promise(resolve => {
-      this.http.get('http://localhost:8000/rotasAPI/' + id)
-      // this.http.get('http://162.243.88.81/rotasAPI/' + id)
+      // this.http.get('http://localhost:8000/rotasAPI/' + id)
+      this.http.get('http://162.243.88.81/rotasAPI/' + id)
         .map(res => res.json())
         .subscribe(data => {
           routes = data.map((v) => { return new RouteModel(v); });
@@ -47,8 +47,8 @@ export class RouteService {
       // We're using Angular Http provider to request the data,
       // then on the response it'll map the JSON data to a parsed JS object.
       // Next we process the data and resolve the promise with the new data.
-      this.http.get('http://localhost:8000/rotas')
-      // this.http.get('http://162.243.88.81/rotas')
+      // this.http.get('http://localhost:8000/rotas')
+      this.http.get('http://162.243.88.81/rotas')
         .map(res => res.json())
         .subscribe(data => {
           // we've got back the raw data, now generate the core schedule data
@@ -68,8 +68,8 @@ export class RouteService {
     }
 
     return new Promise(resolve => {
-      this.http.get('http://localhost:8000/paradas')
-      // this.http.get('http://162.243.88.81/paradas')
+      // this.http.get('http://localhost:8000/paradas')
+      this.http.get('http://162.243.88.81/paradas')
         .map(res => res.json())
         .subscribe(data => {
           this._stops = data.map(v => {

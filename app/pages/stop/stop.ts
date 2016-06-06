@@ -1,4 +1,4 @@
-import {Alert, Loading, Page, NavController} from 'ionic-angular';
+import {Alert, Loading, Page, NavController, Searchbar} from 'ionic-angular';
 import {RouteService}    from '../../providers/providers';
 import {StopModel}       from '../../models/models';
 import {StopDetailsPage} from '../pages';
@@ -8,73 +8,55 @@ import {StopDetailsPage} from '../pages';
 })
 
 export class StopPage {
-  private searchQuery: string;
-  private stops: Array<StopModel> = undefined;
-  private data:  Array<StopModel> = undefined;
+  private stops:  Array<StopModel> = undefined;
+  private backup: Array<StopModel> = undefined;
+  private isSearchbarEnabled = false;
 
-  constructor(public nav: NavController, public routeData: RouteService) { }
+  constructor(public nav: NavController, public routeData: RouteService) {
+    console.log('constructor');
+  }
 
   ngOnInit() {
-    let loading = Loading.create({
-      content: 'Please wait...'
-    });
+    this.initializeItems();
+  }
 
-    this.presentLoadingDefault(loading);
+  initializeItems() {
     this.routeData.stops.then(data => {
-      this.data = data;
-      loading.dismiss();
+      this.backup = data;
     });
+  }
+
+  search(searchbar) {
+      this.isSearchbarEnabled = true;
+
+      // TODO: find a better way to do this
+      // create a directive for example
+      setTimeout(() => {
+        document.querySelector('#univasf > ion-searchbar > div > input')
+                .setAttribute("id", "stop-search");
+        document.getElementById('stop-search').focus();
+      });
   }
 
   private goToRoutes(stop) {
     this.nav.push(StopDetailsPage, stop);
   }
 
-  private search(searchBar) {
+  private searchInput(searchBar: Searchbar) {
     // set q to the value of the searchbar
-    var q = searchBar.value;
+    let q = searchBar.value;
 
+    // clear list of itens
     this.stops = undefined;
 
     // if the value is an empty string don't filter the items
-    if (q.trim() == '') {
-      return;
-    }
+    if (q.trim() == '') return;
 
-    // save check
-    if (this.data) {
-      this.stops = this.data.filter((v) => {
-        if (v.name.toLowerCase().indexOf(q.toLowerCase()) > -1) {
-          return true;
-        }
-        return false;
+    // save check and filtler
+    if (this.backup) {
+      this.stops = this.backup.filter((v) => {
+        return v.name.toLowerCase().indexOf(q.toLowerCase()) > -1;
       });
     }
-  }
-
-  // TODO: think in a better approach to
-  // the loading component in all pages
-  presentLoadingDefault(loading) {
-    this.nav.present(loading);
-
-    setTimeout(() => {
-      if (!this.data) {
-        console.log('not ok');
-        this.presentAlert();
-      }
-
-      loading.dismiss();
-    }, 10000);
-  }
-
-  // TODO: present a Toast
-  // https://www.google.com/design/spec/patterns/errors.html#errors-app-errors
-  presentAlert() {
-    let alert = Alert.create({
-      title: 'Ocorreu uma falha ao carregar os dados',
-      subTitle: 'Por favor verifique sua conexao com a Internet',
-      buttons: ['Fechar']
-    });
-    this.nav.present(alert);
   }
 }

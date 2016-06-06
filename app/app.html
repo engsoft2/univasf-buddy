@@ -1,0 +1,21 @@
+<ion-menu [content]="content">
+
+  <ion-toolbar>
+    <ion-title>UNIVASF Buddy</ion-title>
+  </ion-toolbar>
+
+  <ion-content>
+    <ion-list>
+    <ion-list-header>
+      Navegue
+    </ion-list-header>
+      <button menuClose ion-item *ngFor="let p of appPages" (click)="openPage(p)">
+        <ion-icon item-left [name]="p.icon"></ion-icon>
+        {{p.title}}
+      </button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<ion-nav id="nav" [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
