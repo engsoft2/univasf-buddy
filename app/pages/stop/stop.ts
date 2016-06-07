@@ -49,6 +49,11 @@ export class StopPage {
     // clear list of itens
     this.stops = undefined;
 
+    // user click back button, so that disable the searchbar
+    if (!searchBar.isFocused) {
+      this.isSearchbarEnabled = false;
+    }
+
     // if the value is an empty string don't filter the items
     if (q.trim() == '') return;
 
