@@ -1,5 +1,5 @@
-import {ViewChild} from '@angular/core';
-import {App, Nav, Platform, MenuController} from 'ionic-angular';
+import {Component, ViewChild, } from '@angular/core';
+import {Nav, Platform, MenuController, ionicBootstrap} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {NewsListPage, TabsPage, RouteDetailsPage} from './pages/pages';
 import {RouteService} from './providers/providers';
@@ -11,11 +11,8 @@ interface PageObj {
   index?: number;
 }
 
-@App({
-  // template: '<ion-nav [root]="rootPage"></ion-nav>',
-  templateUrl: 'build/app.html',
-  config: {}, // http://ionicframework.com/docs/v2/api/config/Config/
-  providers: [RouteService]
+@Component({
+  templateUrl: 'build/app.html'
 })
 
 export class MyApp {
@@ -49,3 +46,9 @@ export class MyApp {
     this.rootPage = page.component;
   }
 }
+
+// Pass the main app component as the first argument
+// Pass any providers for your app in the second argument
+// Set any config for your app as the third argument:
+// http://ionicframework.com/docs/v2/api/config/Config/
+ionicBootstrap(MyApp, [RouteService], {});

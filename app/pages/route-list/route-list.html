@@ -14,7 +14,7 @@
 <ion-content class="route-list">
   <ion-item>
     <ion-label>Filtrar por Ônibus</ion-label>
-    <ion-select multiple="true" (change)="filterByBus(true)" [(ngModel)]="filter">
+    <ion-select multiple="true" (ionChange)="filterByBus(true)" [(ngModel)]="filter">
       <ion-option *ngFor="let bus of buses" [checked]="true">{{bus}}</ion-option>
     </ion-select>
   </ion-item>

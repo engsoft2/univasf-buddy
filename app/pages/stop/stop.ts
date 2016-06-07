@@ -1,9 +1,10 @@
-import {Alert, Loading, Page, NavController, Searchbar} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {Alert, Loading, NavController, Searchbar} from 'ionic-angular';
 import {RouteService}    from '../../providers/providers';
 import {StopModel}       from '../../models/models';
 import {StopDetailsPage} from '../pages';
 
-@Page({
+@Component({
   templateUrl: 'build/pages/stop/stop.html',
 })
 

@@ -1,8 +1,9 @@
-import {Page, NavController, NavParams} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavController, NavParams} from 'ionic-angular';
 import {RouteService} from '../../providers/providers';
 import {CalendarPipe} from 'angular2-moment';
 
-@Page({
+@Component({
   templateUrl: 'build/pages/news-details/news-details.html',
   pipes: [CalendarPipe],
 })

@@ -1,9 +1,10 @@
-import {Page, NavController} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavController} from 'ionic-angular';
 import {NewsDetailsPage} from '../pages';
 import {RouteService} from '../../providers/providers';
 import {TimeAgoPipe}  from 'angular2-moment';
 
-@Page({
+@Component({
   templateUrl: 'build/pages/news-list/news-list.html',
   pipes: [TimeAgoPipe]
 })

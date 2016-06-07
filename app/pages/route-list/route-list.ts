@@ -1,4 +1,5 @@
-import {Loading, Page, NavController} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {Loading, NavController} from 'ionic-angular';
 import {RouteCard}    from '../../components/components';
 import {RouteModel}   from '../../models/models';
 import {RouteService} from '../../providers/providers';
@@ -6,7 +7,7 @@ import {RouteService} from '../../providers/providers';
 // type of filter
 enum FilterType { TODOS, CIRCULANDO, ACIRCULAR }
 
-@Page({
+@Component({
   templateUrl: 'build/pages/route-list/route-list.html',
   directives: [RouteCard],
 })

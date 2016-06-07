@@ -3,7 +3,7 @@
     <ion-icon name="menu"></ion-icon>
   </button>
   <div id="univasf">
-    <ion-searchbar *ngIf="isSearchbarEnabled" (input)="searchInput($event)" placeholder="Buscar"></ion-searchbar>
+    <ion-searchbar *ngIf="isSearchbarEnabled" (ionInput)="searchInput($event)" placeholder="Buscar"></ion-searchbar>
   </div>
   <ion-buttons end>
    <button clear (click)="search()" *ngIf="!isSearchbarEnabled">
