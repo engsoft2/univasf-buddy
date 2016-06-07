@@ -1,7 +1,7 @@
 import {ViewChild} from '@angular/core';
 import {App, Nav, Platform, MenuController} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
-import {TabsPage, RouteDetailsPage} from './pages/pages';
+import {NewsListPage, TabsPage, RouteDetailsPage} from './pages/pages';
 import {RouteService} from './providers/providers';
 
 interface PageObj {
@@ -25,7 +25,7 @@ export class MyApp {
 
   // List of pages that can be navigated to from the left menu
   appPages: PageObj[] = [
-    { title:    'Noticias', component: TabsPage, index: 0, icon: 'megaphone' },
+    { title:    'Noticias', component: NewsListPage, index: 0, icon: 'megaphone' },
     { title: 'Cardápio RU', component: RouteDetailsPage, index: 1, icon: 'restaurant' },
     { title:       'Busão', component: TabsPage, index: 2, icon: 'bus' },
     { title:       'Sobre', component: TabsPage, index: 3, icon: 'information-circle' },
