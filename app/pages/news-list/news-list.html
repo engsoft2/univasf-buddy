@@ -6,6 +6,14 @@
 </ion-navbar>
 
 <ion-content class="news-list">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+       pullingIcon="arrow-down"
+       pullingText="Puxe para atulizar"
+       refreshingSpinner="circles"
+       refreshingText="Atualizando...">
+     </ion-refresher-content>
+  </ion-refresher>
   <ion-card *ngFor="let n of news">
     <h3 padding>{{n.b}}</h3>
     <ion-item>
@@ -21,6 +29,6 @@
     </ion-item>
   </ion-card>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-   <ion-infinite-scroll-content></ion-infinite-scroll-content>
- </ion-infinite-scroll>
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

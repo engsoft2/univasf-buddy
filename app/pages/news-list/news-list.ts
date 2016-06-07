@@ -47,6 +47,21 @@ export class NewsListPage {
     this.nav.push(NewsDetailsPage, {title: title, cod: cod, date: date});
   }
 
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+
+    this.service.getnewsHeadlines(1).then(data => {
+      this.news = <Array<any>>data;
+      console.log(this.news);
+      refresher.complete();
+    });
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
+  }
+
   doInfinite(infiniteScroll) {
     console.log('start async call');
 
