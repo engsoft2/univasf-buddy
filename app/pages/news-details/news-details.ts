@@ -8,12 +8,11 @@ import {CalendarPipe} from 'angular2-moment';
 })
 
 export class NewsDetailsPage {
-  news: any;
-  title: any;
-  date: any;
+  private news:  any;
+  private title: string;
+  private date:  Date;
 
   constructor(public nav: NavController, public params: NavParams, public service: RouteService) {
-    console.log(params.data);
     this.title = params.data.title;
     this.date = params.data.date;
   }
@@ -21,7 +20,6 @@ export class NewsDetailsPage {
   ngOnInit() {
     this.service.getNews(this.params.data.cod).then(data => {
       this.news = data;
-      console.log(data);
     });
   }
 }
