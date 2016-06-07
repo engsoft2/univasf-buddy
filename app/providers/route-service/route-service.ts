@@ -3,6 +3,7 @@ import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {RouteModel, StopModel} from '../../models/models';
 
+
 @Injectable()
 export class RouteService {
   private _routes: Array<RouteModel> = undefined;
@@ -22,30 +23,56 @@ export class RouteService {
     })
   }
 
-  get newsHeadlines() {
-    return this.loadNews().then(data => {
+  getnewsHeadlines(page) {
+    return this.loadNews(page).then(data => {
       return data;
     });
   }
 
   getNews(id) {
-    return this.loadNews(id).then(data => {
+    return this.loadNewsBody(id).then(data => {
       return data;
     });
   }
 
-  private loadNews(newsId?: number) {
+  // TODO: refactor this code to use the variables
+  private loadNewsBody(cod) {
+    // Base URI for Web service
+    let yql_base_uri = "https://query.yahooapis.com/v1/public/yql?q=";
+    let univasf_url = "\"http://univasf.edu.br/detalhe_noticias.php?cod=" + cod + "\"";
+    let univasf_xpath = "'/html/body/table/tbody/tr/td/p'";
+    let yql_query = "select content from html where url=" + univasf_url + "and xpath =" + univasf_xpath;
+    let s = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D'http%3A%2F%2Funivasf.edu.br%2Fdetalhe_noticias.php%3Fcod%3D"
+
++
+    cod + "'%20and%20xpath%3D'%2Fhtml%2Fbody%2Ftable%2Ftbody%2Ftr%2Ftd%2Fp'&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
+
+    return new Promise(resolve => {
+      // this.http.get(yql_base_uri+encodeURIComponent(yql_query)+'&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys')
+      this.http.get(s)
+        .map(res => res.json())
+        .subscribe(data => {
+          let count = data.query.count;
+          if (count > 2) {
+            console.log('count > 2 ' + count);
+            resolve(data.query.results.p[count-2].content);
+          }
+          resolve(data.query.results.p[0].content);
+        });
+    })
+  }
+
+  /**
+   * Load a specific page
+   * * @param {number} page=1 page number to be loaded. Default 1
+   * @return {array}
+   */
+  private loadNews(page = 1) {
     // Base URI for Web service
     let yql_base_uri = "https://query.yahooapis.com/v1/public/yql?q=";
 
-    let univasf_url = "'http://univasf.edu.br/todas.php'"
+    let univasf_url = "'http://univasf.edu.br/todas.php?pa=" + page + "'";
     let univasf_xpath = "'//*[@id=\"formNoticia\"]/table[2]/tbody/tr/td/font/span'"
-
-    // if a news id is passed the request changes
-    if (newsId) {
-      univasf_url = "'http://univasf.edu.br/detalhe_noticias.php?cod=" + newsId + "'";
-      univasf_xpath = "'/html/body/table/tbody/tr/td/p'";
-    }
 
     // Create a YQL query to get the data
     let yql_query =   "select onclick, b, content from html where url="+
@@ -55,7 +82,7 @@ export class RouteService {
       this.http.get(yql_base_uri+encodeURIComponent(yql_query)+'&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys')
         .map(res => res.json())
         .subscribe(data => {
-          resolve(data);
+          resolve(data.query.results.span);
         });
     })
   }
