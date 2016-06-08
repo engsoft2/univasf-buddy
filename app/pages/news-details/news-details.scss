@@ -2,4 +2,15 @@
   font-size: 100%;
   line-height: 1.5;
   font-family: 'Bitter', Georgia, 'Times New Roman', Times, serif;
+
+}
+
+// http://www.htmlgoodies.com/primers/html/article.php/3888236
+.news-details p:first-letter {
+  font-size: 44px;
+  float: left;
+  color: #D4D4C7;
+  line-height: 35px;
+  padding-top: 3px;
+  padding-right: 3px;
 }

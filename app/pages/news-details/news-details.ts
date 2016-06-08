@@ -12,10 +12,12 @@ export class NewsDetailsPage {
   private news:  any;
   private title: string;
   private date:  Date;
+  private cod: string;
 
   constructor(public nav: NavController, public params: NavParams, public service: RouteService) {
     this.title = params.data.title;
     this.date = params.data.date;
+    this.cod = params.data.cod;
   }
 
   ngOnInit() {

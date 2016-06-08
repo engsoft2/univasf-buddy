@@ -18,12 +18,12 @@
     <h3 padding>{{n.b}}</h3>
     <ion-item>
       <ion-icon small name="clock" item-left></ion-icon><span item-left>{{getDate(n.content) | amTimeAgo}}</span>
-      <button primary clear item-right>
+      <!-- <button primary clear item-right>
         <ion-icon name="share-alt"></ion-icon>
         Share
-      </button>
+      </button> -->
       <button primary clear item-right (click)="goToNewsDetails(n.onclick, n.b, n.content)">
-        <ion-icon name="arrow-dropright-circle"></ion-icon>
+        <ion-icon name="eye"></ion-icon>
         Ver
       </button>
     </ion-item>
