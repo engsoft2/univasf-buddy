@@ -14,7 +14,9 @@ export class NewsListPage {
   // start from second page
   private pageCountControll = 2;
 
-  constructor(public nav: NavController, public service: RouteService) { }
+  constructor(public nav: NavController, public service: RouteService) {
+      window.analytics.trackView("News Page");
+  }
 
   ngOnInit() {
     this.service.getnewsHeadlines(1).then(data => {
