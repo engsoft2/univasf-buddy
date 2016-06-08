@@ -6,3 +6,5 @@ export * from './tabs/tabs';
 export * from './news-list/news-list';
 export * from './news-details/news-details';
 export * from './ru-list/ru-list';
+export * from './about/about';
+export * from './home/home';
