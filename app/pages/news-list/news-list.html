@@ -7,25 +7,14 @@
 
 <ion-content class="news-list">
   <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content
-       pullingIcon="arrow-down"
-       pullingText="Puxe para atulizar"
-       refreshingSpinner="circles"
-       refreshingText="Atualizando...">
-     </ion-refresher-content>
+    <ion-refresher-content pullingIcon="arrow-down" pullingText="Puxe para atulizar" refreshingSpinner="circles" refreshingText="Atualizando...">
+    </ion-refresher-content>
   </ion-refresher>
-  <ion-card *ngFor="let n of news">
-    <h3 padding>{{n.b}}</h3>
+  <ion-card *ngFor="let n of news" (click)="goToNewsDetails(n.onclick, n.b, n.content)">
+    <h3 padding headline><b>{{n.b}}</b></h3>
     <ion-item>
-      <ion-icon small name="clock" item-left></ion-icon><span item-left>{{getDate(n.content) | amTimeAgo}}</span>
-      <!-- <button primary clear item-right>
-        <ion-icon name="share-alt"></ion-icon>
-        Share
-      </button> -->
-      <button primary clear item-right (click)="goToNewsDetails(n.onclick, n.b, n.content)">
-        <ion-icon name="eye"></ion-icon>
-        Ver
-      </button>
+      <ion-icon small name="clock" item-left class="news-time"></ion-icon><span item-left class="news-time">{{getDate(n.content) | amTimeAgo}}</span>
+      <ion-icon small name="globe" item-right class="news-time"></ion-icon><span item-right class="news-time">univasf.edu.br</span>
     </ion-item>
   </ion-card>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">

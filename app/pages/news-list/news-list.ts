@@ -15,7 +15,7 @@ export class NewsListPage {
   private pageCountControll = 2;
 
   constructor(public nav: NavController, public service: RouteService) {
-      window.analytics.trackView("News Page");
+      // window.analytics.trackView("News Page");
   }
 
   ngOnInit() {
