@@ -11,7 +11,7 @@
     </ion-refresher-content>
   </ion-refresher>
   <ion-card *ngFor="let n of news" (click)="goToNewsDetails(n.onclick, n.b, n.content)">
-    <h3 padding headline><b>{{n.b}}</b></h3>
+    <h3 padding headline class="headline"><b>{{n.b}}</b></h3>
     <ion-item>
       <ion-icon small name="clock" item-left class="news-time"></ion-icon><span item-left class="news-time">{{getDate(n.content) | amTimeAgo}}</span>
       <ion-icon small name="globe" item-right class="news-time"></ion-icon><span item-right class="news-time">univasf.edu.br</span>
