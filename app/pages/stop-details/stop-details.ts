@@ -10,7 +10,7 @@ import {StopModel}    from '../../models/models';
 })
 
 export class StopDetailsPage {
-    stop: any;
+  stop: any;
   routes: any;
 
   constructor(public nav: NavController, params: NavParams, public service: RouteService) {

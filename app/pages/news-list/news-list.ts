@@ -15,7 +15,7 @@ export class NewsListPage {
   private pageCountControll = 2;
 
   constructor(public nav: NavController, public service: RouteService) {
-      // window.analytics.trackView("News Page");
+    // window.analytics.trackView("News Page");
   }
 
   ngOnInit() {
@@ -29,12 +29,12 @@ export class NewsListPage {
     // news is something like this: [253 acessos]02-06-2016 10:27:06 -
 
     // date = 02-06-2016 10:27:06
-    let date = news.split(']')[1].substr(0,19);
+    let date = news.split(']')[1].substr(0, 19);
 
-    let day = date.substr(0,2);
-    let month = date.substring(3,5);
+    let day = date.substr(0, 2);
+    let month = date.substring(3, 5);
 
-    date = date.substring(5,19);
+    date = date.substring(5, 19);
     date = month.concat('-', day, date);
 
     return new Date(date);
@@ -46,7 +46,7 @@ export class NewsListPage {
     // TODO: improve this code
     let cod = code.split('=')[1].split(',')[0].split("'")[0];
     date = this.getDate(date);
-    this.nav.push(NewsDetailsPage, {title: title, cod: cod, date: date});
+    this.nav.push(NewsDetailsPage, { title: title, cod: cod, date: date });
   }
 
   doRefresh(refresher) {

@@ -11,5 +11,5 @@ import {NavController} from 'ionic-angular';
   templateUrl: 'build/pages/ru-list/ru-list.html',
 })
 export class RuListPage {
-  constructor(public nav: NavController) {}
+  constructor(public nav: NavController) { }
 }

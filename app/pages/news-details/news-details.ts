@@ -9,9 +9,9 @@ import {CalendarPipe} from 'angular2-moment';
 })
 
 export class NewsDetailsPage {
-  private news:  any;
+  private news: any;
   private title: string;
-  private date:  Date;
+  private date: Date;
   private cod: string;
 
   constructor(public nav: NavController, public params: NavParams, public service: RouteService) {

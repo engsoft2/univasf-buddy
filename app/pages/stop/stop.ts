@@ -9,7 +9,7 @@ import {StopDetailsPage} from '../pages';
 })
 
 export class StopPage {
-  private stops:  Array<StopModel> = undefined;
+  private stops: Array<StopModel> = undefined;
   private backup: Array<StopModel> = undefined;
   private isSearchbarEnabled = false;
 
@@ -28,15 +28,15 @@ export class StopPage {
   }
 
   search(searchbar) {
-      this.isSearchbarEnabled = true;
+    this.isSearchbarEnabled = true;
 
-      // TODO: find a better way to do this
-      // create a directive for example
-      setTimeout(() => {
-        document.querySelector('#univasf > ion-searchbar > div > input')
-                .setAttribute("id", "stop-search");
-        document.getElementById('stop-search').focus();
-      });
+    // TODO: find a better way to do this
+    // create a directive for example
+    setTimeout(() => {
+      document.querySelector('#univasf > ion-searchbar > div > input')
+        .setAttribute("id", "stop-search");
+      document.getElementById('stop-search').focus();
+    });
   }
 
   private goToRoutes(stop) {

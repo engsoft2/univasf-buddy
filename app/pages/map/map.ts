@@ -8,7 +8,7 @@ import {NavController} from 'ionic-angular';
 export class MapPage {
   private map: any;
 
-  constructor(public nav: NavController) {}
+  constructor(public nav: NavController) { }
 
   ngOnInit() {
     this.initMap();

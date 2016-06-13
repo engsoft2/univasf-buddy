@@ -23,11 +23,11 @@ export class MyApp {
 
   // List of pages that can be navigated to from the left menu
   appPages: PageObj[] = [
-    { title:      'Início', component: HomePage, index: 0, icon: 'home' },
-    { title:    'Notícias', component: NewsListPage, index: 1, icon: 'megaphone' },
+    { title: 'Início', component: HomePage, index: 0, icon: 'home' },
+    { title: 'Notícias', component: NewsListPage, index: 1, icon: 'megaphone' },
     { title: 'Cardápio RU', component: RuListPage, index: 2, icon: 'restaurant' },
-    { title:       'Busão', component: TabsPage, index: 3, icon: 'bus' },
-    { title:       'Sobre', component: AboutPage, index: 4, icon: 'information-circle' },
+    { title: 'Busão', component: TabsPage, index: 3, icon: 'bus' },
+    { title: 'Sobre', component: AboutPage, index: 4, icon: 'information-circle' },
   ];
   rootPage: any = HomePage;
 
