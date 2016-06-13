@@ -35,8 +35,9 @@ export class MyApp {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      StatusBar.styleDefault();
-      window.analytics.startTrackerWithId("UA-78952500-1");
+      StatusBar.styleBlackTranslucent();
+      StatusBar.backgroundColorByHexString("#1976D2");
+      // window.analytics.startTrackerWithId("UA-78952500-1");
     });
   }
 
