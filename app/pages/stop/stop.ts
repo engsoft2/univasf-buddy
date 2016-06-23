@@ -43,23 +43,21 @@ export class StopPage {
     this.nav.push(StopDetailsPage, stop);
   }
 
-  private searchInput(searchBar: Searchbar) {
+  private onCancel(ev) {
+      this.isSearchbarEnabled = false;
+  }
+
+  private searchInput(ev) {
     // set q to the value of the searchbar
-    let q = searchBar.value;
+    let q = ev.target.value;
+    // if the value is an empty string don't filter the items
+    if (q && q.trim() == '') return;
 
     // clear list of itens
     this.stops = undefined;
 
-    // user click back button, so that disable the searchbar
-    if (!searchBar.isFocused) {
-      this.isSearchbarEnabled = false;
-    }
-
-    // if the value is an empty string don't filter the items
-    if (q.trim() == '') return;
-
     // save check and filtler
-    if (this.backup) {
+    if (q && this.backup) {
       this.stops = this.backup.filter((v) => {
         return v.name.toLowerCase().indexOf(q.toLowerCase()) > -1;
       });
