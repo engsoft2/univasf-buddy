@@ -4,8 +4,8 @@
   </button>
   <ion-title>
     <div *ngIf="routes" [ngSwitch]="routes.length">
-      <span *ngSwitchWhen="0">Nenhuma rota</span>
-      <span *ngSwitchWhen="1">Mostrando {{routes.length}} rota</span>
+      <span *ngSwitchCase="0">Nenhuma rota</span>
+      <span *ngSwitchCase="1">Mostrando {{routes.length}} rota</span>
       <span *ngSwitchDefault>Mostrando {{routes.length}} rotas</span>
     </div>
   </ion-title>
