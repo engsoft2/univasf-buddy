@@ -1,15 +1,35 @@
-import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {Content, NavController} from 'ionic-angular';
+import {RouteService} from '../../providers/providers';
+import {CalendarPipe} from 'angular2-moment';
 
-/*
-  Generated class for the RuListPage page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   templateUrl: 'build/pages/ru-list/ru-list.html',
+  pipes: [CalendarPipe]
 })
+
 export class RuListPage {
-  constructor(public nav: NavController) { }
+  @ViewChild(Content) content: Content;
+
+  private meals: any;
+  constructor(public nav: NavController, private service: RouteService) { }
+
+  ngOnInit() {
+    this.service.getRU()
+      .subscribe(data => {
+        this.meals = data;
+        this.scrollTo();
+      });
+  }
+
+  scrollTo() {
+    // set the scrollLeft to 0px, and scrollTop to 500px
+    // the scroll duration should take 200ms
+    this.content.scrollTo(0, 2*442, 1000);
+  }
+
+  getDate(date): Date {
+    return new Date(date + " 14:00:00");
+  }
+
 }

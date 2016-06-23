@@ -101,6 +101,11 @@ export class RouteService {
     });
   }
 
+  getRU() {
+      return this.http.get('http://localhost:8000/cardapio-index')
+                      .map(res => res.json());
+  }
+
   private loadRoutes() {
     if (this._routes) {
       // already loaded data
