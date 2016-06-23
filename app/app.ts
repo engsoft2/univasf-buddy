@@ -1,4 +1,4 @@
-import {Component, ViewChild, } from '@angular/core';
+import {Component, ViewChild, enableProdMode} from '@angular/core';
 import {Nav, Platform, MenuController, ionicBootstrap} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {NewsListPage, TabsPage, RouteDetailsPage,
@@ -55,4 +55,5 @@ export class MyApp {
 // Pass any providers for your app in the second argument
 // Set any config for your app as the third argument:
 // http://ionicframework.com/docs/v2/api/config/Config/
+enableProdMode();
 ionicBootstrap(MyApp, [RouteService], {});
