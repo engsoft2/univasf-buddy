@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Loading, NavController} from 'ionic-angular';
+import {Loading} from 'ionic-angular';
 import {RouteCard}    from '../../components/components';
 import {RouteModel}   from '../../models/models';
 import {RouteService} from '../../providers/providers';
@@ -23,7 +23,7 @@ export class RouteListPage {
   // get reference to type of Filters Enum
   FilterType = FilterType;
 
-  constructor(public nav: NavController, public routeData: RouteService) {
+  constructor(public routeData: RouteService) {
     this._filterBy = FilterType.TODOS;
     this.filter = this.buses;
   }

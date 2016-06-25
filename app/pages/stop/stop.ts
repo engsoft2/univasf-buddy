@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Alert, Loading, NavController, Searchbar} from 'ionic-angular';
+import {NavController, Searchbar} from 'ionic-angular';
 import {RouteService}    from '../../providers/providers';
 import {StopModel}       from '../../models/models';
 import {StopDetailsPage} from '../pages';

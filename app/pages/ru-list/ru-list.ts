@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {Content, NavController} from 'ionic-angular';
+import {Content} from 'ionic-angular';
 import {RouteService} from '../../providers/providers';
 import {CalendarPipe} from 'angular2-moment';
 
@@ -12,7 +12,7 @@ export class RuListPage {
   @ViewChild(Content) content: Content;
 
   private meals: any;
-  constructor(public nav: NavController, private service: RouteService) { }
+  constructor(private service: RouteService) { }
 
   ngOnInit() {
     this.service.getRU()

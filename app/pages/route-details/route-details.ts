@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Platform, NavParams} from 'ionic-angular';
+import {NavParams} from 'ionic-angular';
 import {TimeAgoPipe, DateFormatPipe}    from 'angular2-moment';
 import {StopModel, RouteModel}          from '../../models/models';
 
@@ -13,7 +13,7 @@ export class RouteDetailsPage {
   private map: any;
   private marker: any;
 
-  constructor(platform: Platform, params: NavParams) {
+  constructor(params: NavParams) {
     this.route = params.data;
   }
 

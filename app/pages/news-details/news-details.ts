@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {NavParams} from 'ionic-angular';
 import {RouteService} from '../../providers/providers';
 import {CalendarPipe} from 'angular2-moment';
 
@@ -14,7 +14,7 @@ export class NewsDetailsPage {
   private date: Date;
   private cod: string;
 
-  constructor(public nav: NavController, public params: NavParams, public service: RouteService) {
+  constructor(public params: NavParams, public service: RouteService) {
     this.title = params.data.title;
     this.date = params.data.date;
     this.cod = params.data.cod;
