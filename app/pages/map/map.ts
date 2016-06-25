@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
+import {StopDetailsPage} from '../pages';
 
 @Component({
   templateUrl: 'build/pages/map/map.html',
@@ -42,5 +43,14 @@ export class MapPage {
     });
 
     layer.setMap(this.map);
+
+    layer.addListener('click', (ev) => {
+        console.log('go to routes');
+        this.goToRoutes(ev.row.id.value);
+    })
+  }
+
+  private goToRoutes(id) {
+    this.nav.push(StopDetailsPage, {id: id});
   }
 }
