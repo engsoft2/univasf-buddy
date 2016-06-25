@@ -20,13 +20,13 @@
   </ion-item>
   <ion-row center>
     <ion-col width-33 text-center>
-      <button small clear (click)="filterBy(FilterType.TODOS)" [ngClass]="{active: _filterBy==FilterType.TODOS}">Todas</button>
+      <button small clear (click)="filterBy(FilterType.TODOS)" [ngClass]="{active: _filterBy==FilterType.TODOS}">TODAS</button>
     </ion-col>
     <ion-col width-33 text-center>
-      <button small clear favorite (click)="filterBy(FilterType.CIRCULANDO)" [ngClass]="{active: _filterBy==FilterType.CIRCULANDO}">Circulando</button>
+      <button small clear favorite (click)="filterBy(FilterType.CIRCULANDO)" [ngClass]="{active: _filterBy==FilterType.CIRCULANDO}">CIRCULANDO</button>
     </ion-col>
     <ion-col width-33 text-center>
-      <button small clear (click)="filterBy(FilterType.ACIRCULAR)" [ngClass]="{active: _filterBy==FilterType.ACIRCULAR}">à circular</button>
+      <button small clear (click)="filterBy(FilterType.ACIRCULAR)" [ngClass]="{active: _filterBy==FilterType.ACIRCULAR}">À CIRCULAR</button>
     </ion-col>
   </ion-row>
   <route-card [routes]="routes"></route-card>
