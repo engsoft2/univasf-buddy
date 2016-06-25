@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {Loading} from 'ionic-angular';
+import {Loading, NavParams} from 'ionic-angular';
 import {RouteCard}    from '../../components/components';
-import {RouteModel}   from '../../models/models';
+import {RouteModel, StopModel}   from '../../models/models';
 import {RouteService} from '../../providers/providers';
 
 // type of filter
@@ -23,7 +23,7 @@ export class RouteListPage {
   // get reference to type of Filters Enum
   FilterType = FilterType;
 
-  constructor(public routeData: RouteService) {
+  constructor(public routeData: RouteService, private params: NavParams) {
     this._filterBy = FilterType.TODOS;
     this.filter = this.buses;
   }
@@ -33,12 +33,23 @@ export class RouteListPage {
   }
 
   initializeItems() {
-    this.routeData.routes.then(
-      data => {
-        this.routes = data;
-        this.backup = data;
-      }
-    );
+
+    console.log(this.params.data);
+    if (typeof this.params.data === "number") {
+      this.routeData.getRoutesById(this.params.data).then(
+        data => {
+          this.routes = <RouteModel[]>(data);
+          this.backup = <RouteModel[]>(data);
+        }
+      );
+    } else {
+      this.routeData.routes.then(
+        data => {
+          this.routes = data;
+          this.backup = data;
+        }
+      );
+    }
   }
 
   private filterByBus(isToFilter?: boolean) {
