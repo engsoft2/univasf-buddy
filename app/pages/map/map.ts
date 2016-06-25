@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
-import {StopDetailsPage} from '../pages';
+import {RouteListPage} from '../pages';
 
 @Component({
   templateUrl: 'build/pages/map/map.html',
@@ -51,6 +51,6 @@ export class MapPage {
   }
 
   private goToRoutes(id) {
-    this.nav.push(StopDetailsPage, {id: id});
+    this.nav.push(RouteListPage, parseInt(id));
   }
 }

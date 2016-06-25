@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {NavController, Searchbar} from 'ionic-angular';
 import {RouteService}    from '../../providers/providers';
 import {StopModel}       from '../../models/models';
-import {StopDetailsPage} from '../pages';
+import {RouteListPage} from '../pages';
 
 @Component({
   templateUrl: 'build/pages/stop/stop.html',
@@ -40,7 +40,7 @@ export class StopPage {
   }
 
   private goToRoutes(stop) {
-    this.nav.push(StopDetailsPage, stop);
+    this.nav.push(RouteListPage, stop.id);
   }
 
   private onCancel(ev) {
