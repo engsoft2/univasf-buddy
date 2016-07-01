@@ -26,9 +26,16 @@ export class MapPage {
       scaleControl: false,
       streetViewControl: true,
       rotateControl: true,
-      fullscreenControl: true,
+      fullscreenControl: false,
       zoom: 14
     });
+
+    // prevent google maps of showing gray area when starts from another page
+    setTimeout(() => {
+      google.maps.event.trigger(this.map, 'resize');
+      this.map.setCenter({ lat: -9.42044, lng: -40.50367 });
+    }
+    , 200);
 
     let layer = new google.maps.FusionTablesLayer({
       query: {
@@ -46,7 +53,8 @@ export class MapPage {
 
     layer.addListener('click', (ev) => {
         console.log('go to routes');
-        this.goToRoutes(ev.row.id.value);
+        // wait just a little bit to user see name of stop on the map
+        setTimeout(() => this.goToRoutes(ev.row.id.value), 500);
     })
   }
 

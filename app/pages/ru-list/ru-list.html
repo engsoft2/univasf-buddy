@@ -1,46 +1,48 @@
-<ion-navbar *navbar>
-  <button menuToggle>
-    <ion-icon name="menu"></ion-icon>
-  </button>
-  <ion-title>Cardapio RU</ion-title>
-</ion-navbar>
+<ion-header>
+  <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Cardapio RU</ion-title>
+  </ion-navbar>
+</ion-header>
 
 <ion-content class="ru-list">
-    <ion-card *ngFor="let meal of meals" class="meal">
-        <ion-item>
-          <h2><ion-icon small name="restaurant" primary></ion-icon><span primary item-left> Almoço</span> {{getDate(meal.date) | amCalendar }}</h2>
-        </ion-item>
-        <ion-list>
-          <ion-item>
-            <ion-icon small name="restaurant" item-right></ion-icon>
-            <h3 primary><b>Prato Principal</b></h3>
-            <p>{{meal.prt_principal}}</p>
-          </ion-item>
-          <ion-item>
-            <ion-icon small name="restaurant" item-right></ion-icon>
-            <h3 guarnicao><b>Guarniçāo</b></h3>
-            <p>{{meal.guarnicao}}</p>
-          </ion-item>
-          <ion-item>
-            <ion-icon small name="restaurant" item-right></ion-icon>
-            <h3 saladaCozi><b>Salada Cozida</b></h3>
-            <p>{{meal.sld_cozida}}</p>
-          </ion-item>
-          <ion-item>
-            <ion-icon small name="restaurant" item-right></ion-icon>
-            <h3 saladaCrua><b>Salada Crua</b></h3>
-            <p>{{meal.sld_crua}}</p>
-          </ion-item>
-          <ion-item>
-            <ion-icon small name="restaurant" item-right></ion-icon>
-            <h3 suco><b>Suco</b></h3>
-            <p>{{meal.bebida}}</p>
-          </ion-item>
-          <ion-item>
-            <ion-icon small name="restaurant" item-right></ion-icon>
-            <h3 sobremesa><b>Sobremesa</b></h3>
-            <p>{{meal.sobremesa}}</p>
-          </ion-item>
-        </ion-list>
-    </ion-card>
+  <ion-card *ngFor="let meal of meals" class="meal">
+    <ion-item>
+      <h2><ion-icon small name="restaurant" primary></ion-icon><span primary item-left> Almoço</span> {{getDate(meal.date) | amCalendar }}</h2>
+    </ion-item>
+    <ion-list>
+      <ion-item>
+        <ion-icon small name="restaurant" item-right></ion-icon>
+        <h3 primary><b>Prato Principal</b></h3>
+        <p>{{meal.prt_principal}}</p>
+      </ion-item>
+      <ion-item>
+        <ion-icon small name="restaurant" item-right></ion-icon>
+        <h3 guarnicao><b>Guarniçāo</b></h3>
+        <p>{{meal.guarnicao}}</p>
+      </ion-item>
+      <ion-item>
+        <ion-icon small name="restaurant" item-right></ion-icon>
+        <h3 saladaCozi><b>Salada Cozida</b></h3>
+        <p>{{meal.sld_cozida}}</p>
+      </ion-item>
+      <ion-item>
+        <ion-icon small name="restaurant" item-right></ion-icon>
+        <h3 saladaCrua><b>Salada Crua</b></h3>
+        <p>{{meal.sld_crua}}</p>
+      </ion-item>
+      <ion-item>
+        <ion-icon small name="restaurant" item-right></ion-icon>
+        <h3 suco><b>Suco</b></h3>
+        <p>{{meal.bebida}}</p>
+      </ion-item>
+      <ion-item>
+        <ion-icon small name="restaurant" item-right></ion-icon>
+        <h3 sobremesa><b>Sobremesa</b></h3>
+        <p>{{meal.sobremesa}}</p>
+      </ion-item>
+    </ion-list>
+  </ion-card>
 </ion-content>

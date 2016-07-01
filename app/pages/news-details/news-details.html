@@ -1,10 +1,13 @@
-<ion-navbar *navbar>
-  <ion-title>Detalhes</ion-title>
-</ion-navbar>
+<ion-header>
+  <ion-navbar>
+    <ion-title>Detalhes</ion-title>
+  </ion-navbar>
+</ion-header>
 
 <ion-content padding class="news-details">
   <h3>{{title}}</h3>
   <h6 primary><ion-icon small name="clock"></ion-icon> {{ date | amCalendar}}</h6>
   <p>{{news}}</p>
-  <p class="introduction"><ion-icon name="globe"></ion-icon> Fonte: <a href="http://univasf.edu.br/detalhe_noticias.php?cod={{cod}}">univasf.edu.br</a></p>
+  <p class="introduction">
+    <ion-icon name="globe"></ion-icon> Fonte: <a href="http://univasf.edu.br/detalhe_noticias.php?cod={{cod}}">univasf.edu.br</a></p>
 </ion-content>

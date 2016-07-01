@@ -1,29 +1,28 @@
-<ion-navbar *navbar>
-  <button menuToggle>
-    <ion-icon name="menu"></ion-icon>
-  </button>
-  <ion-title>
-    <ion-icon name="bus"></ion-icon> Busão {{route.bus}}</ion-title>
-</ion-navbar>
+<ion-header>
+  <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <ion-icon name="bus"></ion-icon> Busão {{route.bus}}</ion-title>
+  </ion-navbar>
+</ion-header>
 
-<ion-content class="route-details">
+<ion-content>
   <div id="list">
-    <ion-item>
-      <ion-icon item-left name="clock" primary></ion-icon>
-      <h2>{{route.way}}</h2>
-    </ion-item>
-    <ion-list>
-      <button (click)="showMarkerAndZoom(stop)" ion-item *ngFor="let stop of route.stops">
-        <span primary item-left>{{stop.time | amDateFormat:'LT'}}</span>{{stop.name}}
-        <br>
-        <p>
-          <ion-note subtle>{{stop.time | amTimeAgo}}</ion-note>
-        </p>
-      </button>
-    </ion-list>
+    <ion-content>
+      <ion-list>
+        <div id="space"></div>
+        <ion-item>
+          <ion-icon item-left name="clock" primary></ion-icon>
+          <h2>Via {{route.way}}</h2>
+        </ion-item>
+        <button (click)="showMarkerAndZoom(stop)" ion-item *ngFor="let stop of route.stops">
+          <span primary item-left>{{stop.time | amDateFormat:'LT'}}</span>{{stop.name}}
+          <p><ion-note subtle>{{stop.time | amTimeAgo}}</ion-note></p>
+        </button>
+      </ion-list>
+    </ion-content>
   </div>
-</ion-content>
-
-<ion-content class="route-details">
   <div id="map"></div>
 </ion-content>

@@ -1,11 +1,16 @@
-.route-details {}
-.route-details #map {
-  width: 100%;
-  height: 100%;
-  padding: 0;
-}
-.route-details #list {
+#list {
   width: 100%;
   height: 50%;
   padding: 0;
+}
+
+#map {
+  background-color: blue;
+  width: 100%;
+  height: 50%;
+  padding: 0;
+}
+
+#space {
+  margin-top: 50px;
 }

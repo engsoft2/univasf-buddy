@@ -29,9 +29,9 @@ export class RouteDetailsPage {
       zoomControl: true,
       mapTypeControl: false,
       scaleControl: false,
-      streetViewControl: true,
+      streetViewControl: false,
       rotateControl: true,
-      fullscreenControl: true,
+      fullscreenControl: false,
       zoom: 14
     });
 

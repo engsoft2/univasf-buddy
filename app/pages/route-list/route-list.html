@@ -1,15 +1,17 @@
-<ion-navbar *navbar>
-  <button menuToggle>
-    <ion-icon name="menu"></ion-icon>
-  </button>
-  <ion-title>
-    <div *ngIf="routes" [ngSwitch]="routes.length">
-      <span *ngSwitchCase="0">Nenhuma rota</span>
-      <span *ngSwitchCase="1">Mostrando {{routes.length}} rota</span>
-      <span *ngSwitchDefault>Mostrando {{routes.length}} rotas</span>
-    </div>
-  </ion-title>
-</ion-navbar>
+<ion-header>
+  <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <div *ngIf="routes" [ngSwitch]="routes.length">
+        <span *ngSwitchCase="0">Nenhuma rota</span>
+        <span *ngSwitchCase="1">Mostrando {{routes.length}} rota</span>
+        <span *ngSwitchDefault>Mostrando {{routes.length}} rotas</span>
+      </div>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
 
 <ion-content class="route-list">
   <ion-item>
